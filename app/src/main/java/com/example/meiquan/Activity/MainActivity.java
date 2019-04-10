@@ -1,4 +1,4 @@
-package com.example.meiquan;
+package com.example.meiquan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.meiquan.R;
+import com.example.meiquan.Urls;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -52,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // 绑定视图
         ButterKnife.bind(this);
+        startActivity(new Intent(MainActivity.this, TabActivity.class));
     }
 
     /**

@@ -15,9 +15,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".registActivity"></activity>
-        <activity android:name=".TabActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.registActivity"></activity>
+        <activity android:name=".Activity.TabActivity" />
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
