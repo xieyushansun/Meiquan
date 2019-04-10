@@ -33,13 +33,14 @@ public class registActivity extends AppCompatActivity {
             showToast("请再次输入密码!");
             return;
         }
-        OkGo.<String>post(Urls.LoginServlet)
+        OkGo.<String>post(Urls.RegistServlet)
                 .params("phone", ed_phone.getText().toString())
                 .params("password", ed_password.getText().toString())
                 .params("passwordAgain", ed_passwordAgain.getText().toString())
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+
                         if (response.body().compareTo("0") == 0){
                             showToast("请输入合法电话号码！");
                         }
@@ -51,9 +52,7 @@ public class registActivity extends AppCompatActivity {
                         }
                         else if (response.body().compareTo("3") == 0){
                             showToast("注册成功！");
-
                         }
-
                     }
                 });
 

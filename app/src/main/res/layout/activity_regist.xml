@@ -70,7 +70,7 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="148dp"
         android:ems="10"
-        android:maxLength="15"
+        android:maxLength="20"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
