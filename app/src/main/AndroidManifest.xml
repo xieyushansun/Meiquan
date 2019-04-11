@@ -15,7 +15,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.registActivity"></activity>
+        <activity android:name=".Activity.SystemSettingActivity"></activity>
+        <activity android:name=".Activity.personnalSettingActivity" />
+        <activity android:name=".Activity.registActivity" />
         <activity android:name=".Activity.TabActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>

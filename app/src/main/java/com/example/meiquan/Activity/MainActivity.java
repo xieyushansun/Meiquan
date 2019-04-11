@@ -10,8 +10,11 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
                         //如果账号密码正确，就跳转页面
                         if (response.body().compareTo("1") == 0){
                             showToast("登录成功！");
+                            GlobalData.phone = ed_phone.getText().toString();
+                            GlobalData.password = ed_password.getText().toString();
                             startActivity(new Intent(MainActivity.this, TabActivity.class));
                         }
                         else if (response.body().compareTo("-1") == 0){
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // 绑定视图
         ButterKnife.bind(this);
-        startActivity(new Intent(MainActivity.this, TabActivity.class));
+        //startActivity(new Intent(MainActivity.this, TabActivity.class));
     }
 
     /**
