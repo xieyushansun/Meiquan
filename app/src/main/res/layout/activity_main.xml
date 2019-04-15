@@ -48,10 +48,10 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="148dp"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <!--android:inputType="textPassword"-->
     <Button
         android:id="@+id/btn_login"
         android:layout_width="278dp"

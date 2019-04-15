@@ -2,26 +2,126 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:layout_marginTop="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_day"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="日"
+            android:layout_marginStart="20dp"/>
+        <Button
+            android:id="@+id/btn_month"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="周"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/btn_year"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="月"
+            android:layout_marginEnd="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="今日已走7739步"
+            android:textSize="30sp"
+            android:gravity="center"/>
 
-    <Button
-        android:id="@+id/btn_day"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:text="日"
-        android:layout_marginStart="20dp"/>
-    <Button
-        android:id="@+id/btn_month"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:text="周"
-        android:layout_weight="1" />
-    <Button
-        android:id="@+id/btn_year"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_weight="1"
-        android:text="月"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginStart="@dimen/margin"
+        android:layout_marginEnd="@dimen/margin"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/ButtonTextSize"
+                android:text="今日卡路里消耗分析" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/ButtonTextSize"
+                android:text="已消耗 84 千卡"/>
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </com.github.mikephil.charting.charts.BarChart>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="150dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/ButtonTextSize"
+                android:text="刷新"/>
+            <Button
+                android:id="@+id/btn_addin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/ButtonTextSize"
+                android:layout_weight="1"
+                android:text="添加"/>
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart_output"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        </com.github.mikephil.charting.charts.BarChart>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="150dp">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/ButtonTextSize"
+                android:text="刷新"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/ButtonTextSize"
+                android:layout_weight="1"
+                android:text="添加"/>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

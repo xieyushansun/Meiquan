@@ -4,7 +4,9 @@
     package="com.example.meiquan">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,7 +17,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.SystemSettingActivity"></activity>
+        <activity android:name=".Activity.AddInputActivity"></activity>
+        <activity android:name=".Activity.SystemSettingActivity" />
         <activity android:name=".Activity.personnalSettingActivity" />
         <activity android:name=".Activity.registActivity" />
         <activity android:name=".Activity.TabActivity" />

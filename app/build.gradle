@@ -17,15 +17,10 @@ android {
         }
     }
     compileOptions {
-
         sourceCompatibility JavaVersion.VERSION_1_8
-
         targetCompatibility JavaVersion.VERSION_1_8
-
     }
 }
-
-
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -40,5 +35,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation files('libs/mpandroidchartlibrary-2-1-4.jar')
     implementation 'com.blankj:utilcode:1.11.1'
+    implementation 'com.wenwenwen888:searchbox:1.0.1'
 }

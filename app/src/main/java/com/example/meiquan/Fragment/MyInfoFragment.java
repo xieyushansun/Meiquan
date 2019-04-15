@@ -43,7 +43,7 @@ public class MyInfoFragment extends Fragment implements AdapterView.OnItemClickL
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_my_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_info, null, false);
         ButterKnife.bind(this, view);
         tv_nickname.setText(GlobalData.nickname);
         tv_phone.setText(GlobalData.phone);

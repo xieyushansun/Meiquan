@@ -1,7 +1,7 @@
 package com.example.meiquan;
 
 public class Urls {
-    public static String HOST = "http://192.168.155.1:8080";
+    public static String HOST = "http://192.168.43.77:8080";
     // a9 star 192.168.43.77
     // library 10.19.242.28
     // cckj 192.168.0.47

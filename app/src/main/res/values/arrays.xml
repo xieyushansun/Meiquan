@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="inputArray">
+        <item>骑车 184大卡/小时</item>
+        <item>逛街 110大卡/小时</item>
+        <item>跑步 700大卡/小时</item>
+        <item>快走 555大卡/小时</item>
+
+    </string-array>
+</resources>
+
+<!--  java代码中调用
+String[] arrays = getResources().getStringArray(R.array.fileEndingImage)
+-->

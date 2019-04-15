@@ -33,6 +33,7 @@ public class TabActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
+
         OkGo.<String>post(Urls.GetUserInfoServlet)
                 .params("phone", GlobalData.phone)
                 .execute(new StringCallback() {
@@ -84,7 +85,7 @@ public class TabActivity extends AppCompatActivity {
         mTitle.add("我的");
 
         mFragment = new ArrayList<>();
-        mFragment.add(new Fragment());
+        mFragment.add(new TodayFragment());
         mFragment.add(new Fragment());
         mFragment.add(new Fragment());
         mFragment.add(new MyInfoFragment());

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.NetworkUtils;
 import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
@@ -19,14 +20,29 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
+
 public class MainActivity extends AppCompatActivity {
     // 绑定控件和变量
     @BindView(R.id.ed_phone) EditText ed_phone;
     @BindView(R.id.ed_password) EditText ed_password;
-
     @OnClick(R.id.btn_login) void login(){
         if (ed_phone.getText().toString().isEmpty() || ed_password.getText().toString().isEmpty()){
-            showToast("请输入用户名或密码！");
+            /*
+            此处修改了，使得不需要用户名密码也可以登录！！！！！！
+            */
+            GlobalData.phone = "1";
+            GlobalData.password = "1";
+            startActivity(new Intent(MainActivity.this, TabActivity.class));
+            /*
+            此处修改了，使得不需要用户名密码也可以登录！！！！！！
+            */
+            return;
+            //showToast("请输入用户名或密码！");
         }
 
         OkGo.<String>post(Urls.LoginServlet)
@@ -62,12 +78,8 @@ public class MainActivity extends AppCompatActivity {
         // 绑定视图
         ButterKnife.bind(this);
         //startActivity(new Intent(MainActivity.this, TabActivity.class));
+        //showToast(""+ NetworkUtils.getIPAddress(true));
     }
-
-    /**
-     * 显示气泡
-     * @param msg 需要显示的信息
-     */
     void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
