@@ -1,75 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity">
+    tools:context=".Activity.MainActivity"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tv_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="84dp"
-        android:text="phone:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-    <TextView
-        android:id="@+id/tv_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="160dp"
-        android:text="password:"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:fontFamily="@font/gotham"
+        android:text="Mei Quan"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffffff"
+        android:textSize="50sp" />
 
     <EditText
         android:id="@+id/ed_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="76dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="35dp"
+        android:drawableLeft="@drawable/phone"
+        android:drawablePadding="16dp"
         android:ems="10"
+        android:hint="请输入手机号码"
         android:inputType="number"
+        android:theme="@style/MyEditText"
+        android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/ed_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="148dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:drawableStart="@drawable/ic_lock_white_24dp"
         android:ems="10"
-        android:inputType="number"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:drawablePadding="10dp"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:theme="@style/MyEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <!--android:inputType="textPassword"-->
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="278dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="408dp"
         android:text="登录"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_margin="35dp"
+        android:textSize="@dimen/ButtonTextSize"
+        android:textColor="#96ffffff"
+        android:background="@drawable/loginbtn_selector"
+        />
 
     <Button
         android:id="@+id/btn_regist"
-        android:layout_width="278dp"
+        android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="496dp"
         android:text="注册"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:textSize="@dimen/ButtonTextSize"
+        android:textColor="#96ffffff"
+        android:background="@drawable/loginbtn_selector"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
