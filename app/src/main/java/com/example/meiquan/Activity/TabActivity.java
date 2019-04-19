@@ -57,8 +57,6 @@ public class TabActivity extends AppCompatActivity {
         getUserInfo();
         initTab();
 
-
-
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

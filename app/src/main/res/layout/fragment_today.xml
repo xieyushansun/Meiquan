@@ -1,128 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginTop="10dp">
-    <LinearLayout
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimary">
+        <AutoCompleteTextView
+            android:id="@+id/act_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:drawableEnd="@drawable/close"
+            android:drawableStart="@drawable/enlargeglass"
+            android:drawablePadding="10dp"
+            android:hint="搜索食物热量"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:textColor="@color/grey"
+            android:layout_margin="@dimen/margin"
+            android:background="@drawable/rounded_edittext"
+            />
+    </FrameLayout>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btn_day"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:text="日"
-            android:layout_marginStart="20dp"/>
-        <Button
-            android:id="@+id/btn_month"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:text="周"
-            android:layout_weight="1" />
-        <Button
-            android:id="@+id/btn_year"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:text="月"
-            android:layout_marginEnd="20dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="4"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="今日已走7739步"
-            android:textSize="30sp"
-            android:gravity="center"/>
-
-    </LinearLayout>
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginStart="@dimen/margin"
-        android:layout_marginEnd="@dimen/margin"
-        android:orientation="vertical"
-        >
+        android:background="#FFE08C">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
+            android:orientation="vertical">
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="@dimen/ButtonTextSize"
-                android:text="今日卡路里消耗分析" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="@dimen/ButtonTextSize"
-                android:text="已消耗 84 千卡"/>
-        </LinearLayout>
+                android:background="@drawable/gradient_green">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="今日还可摄入(千卡)"
+                    android:layout_marginTop="50dp"
+                    android:layout_gravity="center_horizontal"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1652"
+                    android:textColor="#fff"
+                    android:fontFamily="@font/gotham"
+                    android:textSize="50sp"
+                    android:layout_marginTop="95dp"
+                    android:layout_gravity="center_horizontal"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ring_shape"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <com.getbase.floatingactionbutton.FloatingActionsMenu
+                    android:id="@+id/multiple_actions"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                    fab:fab_addButtonColorNormal="@color/white"
+                    fab:fab_addButtonColorPressed="@color/white_pressed"
+                    fab:fab_addButtonPlusIconColor="@color/half_black"
+                    fab:fab_labelStyle="@style/menu_labels_style"
+                    android:layout_marginEnd="20dp"
+                    >
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/chart_input"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+                    <com.getbase.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btn_addeat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        fab:fab_colorNormal="@color/yellow"
+                        fab:fab_icon="@drawable/eat"
+                        fab:fab_colorPressed="@color/white_pressed"/>
 
-        </com.github.mikephil.charting.charts.BarChart>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="150dp">
-            <Button
-                android:id="@+id/btn_test"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="@dimen/ButtonTextSize"
-                android:text="刷新"/>
-            <Button
-                android:id="@+id/btn_addin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/ButtonTextSize"
-                android:layout_weight="1"
-                android:text="添加"/>
-        </LinearLayout>
+                    <com.getbase.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btn_addsport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        fab:fab_icon="@drawable/sport"
+                        fab:fab_colorNormal="@color/pink"
+                        fab:fab_colorPressed="@color/white_pressed"/>
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/chart_output"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-        </com.github.mikephil.charting.charts.BarChart>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginStart="150dp">
-            <Button
+                </com.getbase.floatingactionbutton.FloatingActionsMenu>
+            </FrameLayout>
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="@dimen/ButtonTextSize"
-                android:text="刷新"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/ButtonTextSize"
-                android:layout_weight="1"
-                android:text="添加"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/radio_chart"
+                android:layout_marginBottom="50dp">
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chart_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    >
+                </com.github.mikephil.charting.charts.BarChart>
+            </FrameLayout>
+
+
         </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
