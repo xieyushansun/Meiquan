@@ -19,6 +19,7 @@
             android:drawableStart="@drawable/enlargeglass"
             android:drawablePadding="10dp"
             android:hint="搜索食物热量"
+            android:maxLines="1"
             android:textCursorDrawable="@drawable/my_cursor"
             android:textColor="@color/grey"
             android:layout_margin="@dimen/margin"
@@ -40,7 +41,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="今日还可摄入(千卡)"
+                    android:text="今日还可摄入(大卡)"
                     android:layout_marginTop="50dp"
                     android:layout_gravity="center_horizontal"/>
                 <TextView
@@ -71,7 +72,7 @@
                     >
 
                     <com.getbase.floatingactionbutton.FloatingActionButton
-                        android:id="@+id/btn_addeat"
+                        android:id="@+id/btn_addfood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         fab:fab_colorNormal="@color/yellow"
@@ -88,21 +89,76 @@
 
                 </com.getbase.floatingactionbutton.FloatingActionsMenu>
             </FrameLayout>
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/radio_chart"
-                android:layout_marginBottom="50dp">
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/chart_input"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/grey"
+                        android:text="今日饮食分析 (摄入热量/大卡)"
+                        android:layout_marginStart="30dp"
+                        android:layout_gravity="center_vertical"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/detail"/>
+                </LinearLayout>
+
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chart_food"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="200dp"
                     >
                 </com.github.mikephil.charting.charts.BarChart>
-            </FrameLayout>
-
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/radio_chart"
+                android:layout_marginBottom="50dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/grey"
+                        android:text="今日运动分析 (消耗热量/大卡)"
+                        android:layout_marginStart="30dp"
+                        android:layout_gravity="center_vertical"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="100dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/detail"/>
+                </LinearLayout>
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/chart_sport"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_height="200dp"
+                    >
+                </com.github.mikephil.charting.charts.BarChart>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

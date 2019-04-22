@@ -1,8 +1,11 @@
 package com.example.meiquan;
 
-import java.util.ArrayList;
+import com.example.meiquan.entity.FoodCalory;
+import com.example.meiquan.entity.SportCalory;
+
+
 import java.util.List;
-import java.util.Map;
+
 
 public class GlobalData {
     public static String phone = "";
@@ -10,4 +13,6 @@ public class GlobalData {
     public static String password = "";
     public static int height = 0;
     public static int weight = 0;
+    public static List<SportCalory> sportCaloryList;
+    public static List<FoodCalory> foodCaloryList;
 }

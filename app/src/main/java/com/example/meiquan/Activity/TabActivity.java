@@ -78,6 +78,7 @@ public class TabActivity extends AppCompatActivity {
         mytab.getTabAt(1).setIcon(R.drawable.advicetab_selector);
         mytab.getTabAt(2).setIcon(R.drawable.newtab_selector);
         mytab.getTabAt(3).setIcon(R.drawable.mytab_selector);
+
         //mytab.removeAllTabs();
 
         //mViewPager.setOffscreenPageLimit(4); //预加载tab页
@@ -103,19 +104,6 @@ public class TabActivity extends AppCompatActivity {
                     }
                 });
 
-        /*
-        从数据库获取卡路里数据
-         */
-            /*OkGo.<String>get(Urls.SportCaloryServlet)
-                    .execute(new StringCallback() {
-                        @Override
-                        public void onSuccess(Response<String> response) {
-                            Type type = new TypeToken<List<SportCalory>>(){}.getType();
-                            List<SportCalory> sportCaloryList = new Gson().fromJson(response.body(),type );
-
-                        }
-                    });
-                    */
     }
     void initTab(){
         mytab = (TabLayout) findViewById(R.id.tabLayout);

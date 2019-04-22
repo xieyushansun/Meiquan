@@ -3,4 +3,5 @@
     <dimen name="ButtonTextSize">20sp</dimen>
     <dimen name="margin">10dp</dimen>
     <dimen name="tabTextSize">10sp</dimen>
+    <dimen name="charttextsize">5sp</dimen>
 </resources>

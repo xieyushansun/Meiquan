@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#62CC74</color>
     <color name="colorPrimaryDark">#62CC74</color>
-    <color name="colorAccent">#96FFFFFF</color>
+    <color name="colorAccent">#FFDF82</color>
     <color name="line">#727272</color>
     <color name="grey">#8a8a8a</color>
     <color name="textInputLayout">#96ffffff</color>
@@ -10,8 +10,11 @@
     <color name="half_black">#808080</color>
     <color name="white">#FAFAFA</color>
     <color name="yellow">#FFDF82</color>
-    <color name="pink">#FF8484</color>
+    <color name="pink">#E1FE6D67</color>
     <color name="white_pressed">#f1f1f1</color>
     <color name="black_semi_transparent">#B2000000</color>
 
+    <color name="chartbackgroundClolor">#00FAEECE</color><!--#E2FAEECE-->
+
+    <color name="grid">#9CBBBBBB</color>
 </resources>

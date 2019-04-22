@@ -71,6 +71,4 @@
         android:textSize="@dimen/ButtonTextSize"
         android:textColor="#96ffffff"
         android:background="@drawable/loginbtn_selector"/>
-
-
 </androidx.appcompat.widget.LinearLayoutCompat>

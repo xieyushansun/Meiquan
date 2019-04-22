@@ -6,17 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.meiquan.Activity.AddInputActivity;
+import com.example.meiquan.Activity.AddFoodActivity;
+import com.example.meiquan.Activity.AddSportActivity;
 import com.example.meiquan.R;
-import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.lzy.okgo.OkGo;
 
 import java.util.ArrayList;
 
@@ -29,15 +28,18 @@ import butterknife.OnClick;
 
 
 public class TodayFragment extends Fragment {
-    @BindView(R.id.chart_input) BarChart barCInput;
-    @OnClick(R.id.btn_addsport) void add(){
-        startActivity(new Intent(getActivity(), AddInputActivity.class));
+    @BindView(R.id.chart_food) BarChart barCInput;
+    @OnClick(R.id.btn_addsport) void addsport(){
+        startActivity(new Intent(getActivity(), AddSportActivity.class));
+    }
+    @OnClick(R.id.btn_addfood) void addfood(){
+        startActivity(new Intent(getActivity(), AddFoodActivity.class));
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, null, false);
         ButterKnife.bind(this, view);
-        showBarChart(barCInput, getBarData_in());
+        showBarChart(barCInput, getBarData_food());
 
         return view;
     }
@@ -47,14 +49,9 @@ public class TodayFragment extends Fragment {
         barChart.setNoDataTextDescription("暂无数据");
         barChart.setData(barData); // 设置数据
         barChart.setDescription("");
-        barChart.setDescriptionTextSize(15);
         barChart.setDrawBorders(false); //是否在折线图上添加边框
         barChart.setDescription("");
-        barChart.setDescriptionColor(Color.RED);//数据的颜色
-        barChart.setDescriptionTextSize(40);//数据字体大小
         barChart.setDrawBarShadow(false);//柱状图没有数据的部分是否显示阴影效果
-        Legend legend = barChart.getLegend();
-        legend.setTextSize(15);
 
         barChart.setTouchEnabled(true); // 设置是否可以触摸
         barChart.setDragEnabled(false);// 是否可以拖拽
@@ -70,43 +67,55 @@ public class TodayFragment extends Fragment {
         barChart.getAxisRight().setEnabled(false);//是否显示最右侧竖线
         barChart.getAxisRight().setDrawAxisLine(true);
         barChart.getAxisLeft().setDrawAxisLine(false);
-        barChart.getXAxis().setDrawAxisLine(true);
-        barChart.getLegend().setPosition(Legend.LegendPosition.RIGHT_OF_CHART);//设置比例图标的位置
-        barChart.getLegend().setDirection(Legend.LegendDirection.RIGHT_TO_LEFT);//设置比例图标和文字之间的位置方向
-        barChart.getLegend().setTextColor(Color.RED);
-        barChart.getAxisLeft().setTextSize(15);
-        barChart.getXAxis().setTextSize(15);
 
-        //final String []str_in = {"0时", "4时", "8时", "12时", "16时", "20时", "24时",};
+        barChart.setBackgroundColor(getResources().getColor(R.color.chartbackgroundClolor, null));
+        barChart.setGridBackgroundColor(getResources().getColor(R.color.chartbackgroundClolor, null));
+
+        barChart.getLegend().setEnabled(false);
+        barChart.getAxisLeft().setTextSize(10f);
+        barChart.getXAxis().setTextSize(10f);
+        barChart.getAxisLeft().setTextColor(R.color.grey);
+        barChart.getXAxis().setTextColor(R.color.grey);
+        barChart.getAxisLeft().setGridColor(getResources().getColor(R.color.grid, null));
     }
-    private BarData getBarData_in() {
+
+    private BarData getBarData_food() {
+
         ArrayList<String> xValues = new ArrayList<String>();
-
-        final String []str_in = {"0时", "", "","", "4时", "","", "", "8时","", "", "",
-                "12时", "", "","", "16时", "","", "", "20时","", "", ""};
-        for (int i = 0; i <24; i++)
+        String []str_in_detail = {"早上", "上午", "中午", "下午", "晚上", "深夜"};
+        for (int i = 0; i <6; i++)
         {
-            xValues.add(str_in[i]);
+            xValues.add(str_in_detail[i]);
         }
-        ArrayList<BarEntry> yValues = new ArrayList<BarEntry>();
 
+
+
+        ArrayList<BarEntry> yValues = new ArrayList<BarEntry>();
+        yValues.add(new BarEntry(1, 0));
+        yValues.add(new BarEntry(2, 1));
+        yValues.add(new BarEntry(3, 2));
+        yValues.add(new BarEntry(4, 3));
+        yValues.add(new BarEntry(5, 4));
+        yValues.add(new BarEntry(6, 5));
 
         // y轴的数据集合
         BarDataSet barDataSet = new BarDataSet(yValues, "");
-        barDataSet.setBarSpacePercent(80f);
+        barDataSet.setValueTextColor(Color.RED);
         //barDataSet.setBarSpacePercent(40);
+        barDataSet.setBarSpacePercent(60f);
+
         barDataSet.setVisible(true);//是否显示柱状图柱子
         ArrayList<Integer> colors_bar = new ArrayList<Integer>();
-        colors_bar.add(Color.rgb(97, 163, 201));
+        colors_bar.add(getResources().getColor(R.color.pink, null));
         barDataSet.setColors(colors_bar);
         barDataSet.setDrawValues(false);//是否显示柱子上面的数值
+
 
         ArrayList<BarDataSet> barDataSets = new ArrayList<BarDataSet>();
         barDataSets.add(barDataSet); // add the datasets
 
         BarData barData = new BarData(xValues, barDataSet);
         barData.setValueTextSize(15);
-
         return barData;
     }
 }

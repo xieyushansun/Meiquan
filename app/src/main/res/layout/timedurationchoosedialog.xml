@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#4162CC74"
+    android:orientation="vertical">
+    <FrameLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        android:background="@color/colorPrimary">
+        <ImageView
+            android:id="@+id/img_close"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:background="@drawable/close_dialog"/>
+    </FrameLayout>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0000ffff"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:textColor="#7D7D7D"
+        android:text="请选择运动时间以及持续时长"
+        android:textSize="16sp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+        <com.cncoderx.wheelview.Wheel3DView
+            android:id="@+id/wheel_when"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cyclic="true"
+            app:entries="@array/choosewhen"
+            app:visibleItems="9"
+            app:toward="right"/>
+        <com.cncoderx.wheelview.Wheel3DView
+            android:id="@+id/wheel_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cyclic="true"
+            app:entries="@array/choosehour"
+            app:visibleItems="9"
+            app:toward="right"/>
+        <com.cncoderx.wheelview.Wheel3DView
+            android:id="@+id/wheel_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cyclic="true"
+            app:entries="@array/chooseminute"
+            app:visibleItems="9"
+            app:toward="right"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="15dp"
+        android:background="#E4E4E4" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#E4E4E4" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="#7D7D7D"
+            android:background="#0000ffff"
+            android:text="取消" />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="#E4E4E4">
+        </View>
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#0000ffff"
+            android:textColor="#38ADFF"
+            android:text="确定" />
+    </LinearLayout>
+</LinearLayout>

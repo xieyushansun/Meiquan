@@ -18,7 +18,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.AddInputActivity" />
+        <activity android:name=".Activity.AddFoodActivity"></activity>
+        <activity android:name=".Activity.AddSportActivity" />
         <activity android:name=".Activity.SystemSettingActivity" />
         <activity android:name=".Activity.personnalSettingActivity" />
         <activity android:name=".Activity.registActivity" />

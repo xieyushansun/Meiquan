@@ -5,8 +5,108 @@
         <item>逛街</item>
         <item>跑步</item>
         <item>快走</item>
-
     </string-array>
+
+    <string-array name="choosewhen">
+        <item>早上</item>
+        <item>上午</item>
+        <item>中午</item>
+        <item>下午</item>
+        <item>晚上</item>
+        <item>深夜</item>
+    </string-array>
+
+    <string-array name="choosehour">
+        <item>0小时</item>
+        <item>1小时</item>
+        <item>2小时</item>
+        <item>3小时</item>
+        <item>4小时</item>
+        <item>5小时</item>
+        <item>6小时</item>
+        <item>7小时</item>
+        <item>8小时</item>
+        <item>9小时</item>
+        <item>10小时</item>
+        <item>11小时</item>
+        <item>12小时</item>
+        <item>13小时</item>
+        <item>14小时</item>
+        <item>15小时</item>
+        <item>16小时</item>
+        <item>17小时</item>
+        <item>18小时</item>
+        <item>19小时</item>
+        <item>20小时</item>
+        <item>21小时</item>
+        <item>22小时</item>
+        <item>23小时</item>
+        <item>24小时</item>
+    </string-array>
+    <string-array name="chooseminute">
+        <item>0分钟</item>
+        <item>1分钟</item>
+        <item>2分钟</item>
+        <item>3分钟</item>
+        <item>4分钟</item>
+        <item>5分钟</item>
+        <item>6分钟</item>
+        <item>7分钟</item>
+        <item>8分钟</item>
+        <item>9分钟</item>
+        <item>10分钟</item>
+        <item>11分钟</item>
+        <item>12分钟</item>
+        <item>13分钟</item>
+        <item>14分钟</item>
+        <item>15分钟</item>
+        <item>16分钟</item>
+        <item>17分钟</item>
+        <item>18分钟</item>
+        <item>19分钟</item>
+        <item>20分钟</item>
+        <item>21分钟</item>
+        <item>22分钟</item>
+        <item>23分钟</item>
+        <item>24分钟</item>
+        <item>25分钟</item>
+        <item>26分钟</item>
+        <item>27分钟</item>
+        <item>28分钟</item>
+        <item>29分钟</item>
+        <item>30分钟</item>
+        <item>31分钟</item>
+        <item>32分钟</item>
+        <item>33分钟</item>
+        <item>34分钟</item>
+        <item>35分钟</item>
+        <item>36分钟</item>
+        <item>37分钟</item>
+        <item>38分钟</item>
+        <item>39分钟</item>
+        <item>40分钟</item>
+        <item>41分钟</item>
+        <item>42分钟</item>
+        <item>43分钟</item>
+        <item>44分钟</item>
+        <item>45分钟</item>
+        <item>46分钟</item>
+        <item>47分钟</item>
+        <item>48分钟</item>
+        <item>49分钟</item>
+        <item>50分钟</item>
+        <item>51分钟</item>
+        <item>52分钟</item>
+        <item>53分钟</item>
+        <item>54分钟</item>
+        <item>55分钟</item>
+        <item>56分钟</item>
+        <item>57分钟</item>
+        <item>58分钟</item>
+        <item>59分钟</item>
+    </string-array>
+
+
 </resources>
 
 <!--  java代码中调用
