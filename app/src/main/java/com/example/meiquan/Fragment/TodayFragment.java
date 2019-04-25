@@ -52,12 +52,8 @@ public class TodayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_today, null, false);
         ButterKnife.bind(this, view);
         initTodayFoodDataFromSever();
-
-
         return view;
     }
-
-
     void initTodayFoodDataFromSever(){
         OkGo.<String>post(Urls.TodayFoodServlet)
                 .params("phone", GlobalData.phone)
@@ -80,8 +76,6 @@ public class TodayFragment extends Fragment {
                     }
                 });
     }
-
-
     private void showBarChart(final BarChart barChart, BarData barData) {
         chart_food.notifyDataSetChanged();
         chart_food.invalidate();
@@ -119,7 +113,6 @@ public class TodayFragment extends Fragment {
 
         barChart.animateXY(1000,1500);
     }
-
     private BarData getBarData_food() {
 
         ArrayList<String> xValues = new ArrayList<String>();

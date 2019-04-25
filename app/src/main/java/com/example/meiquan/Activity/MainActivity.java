@@ -28,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
         if (ed_phone.getText().toString().isEmpty() || ed_password.getText().toString().isEmpty()){
             /*
             此处修改了，使得不需要用户名密码也可以登录！！！！！！
-            *//*
-            GlobalData.phone = "1";
-            GlobalData.password = "1";
-            startActivity(new Intent(MainActivity.this, TabActivity.class));
-            *//*
-            此处修改了，使得不需要用户名密码也可以登录！！！！！！
-            *//*
+            */
+            /*GlobalData.phone = "18508333640";
+            GlobalData.password = "3640";*/
+            /*startActivity(new Intent(MainActivity.this, TabActivity.class));
             return;*/
+            /*
+            此处修改了，使得不需要用户名密码也可以登录！！！！！！
+            */
             showToast("请输入用户名或密码！");
             return;
         }

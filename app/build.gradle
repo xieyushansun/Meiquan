@@ -36,7 +36,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.google.android.material:material:1.0.0'
     implementation files('libs/mpandroidchartlibrary-2-1-4.jar')
-    implementation 'com.blankj:utilcode:1.11.1'
+    implementation 'com.blankj:utilcodex:1.23.7'
     implementation 'com.wenwenwen888:searchbox:1.0.1'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
@@ -46,5 +46,9 @@ dependencies {
     implementation 'com.kevalpatel2106:ruler-picker:1.1'
 
     implementation 'com.github.Blincheng:AddressSelector:v1.0.4'
+
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'me.shaohui:bottomdialog:1.1.9'
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
 
 }

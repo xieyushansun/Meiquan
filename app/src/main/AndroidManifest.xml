@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.FirstRegisterCompleteUserInfo_step3"></activity>
+        <activity android:name=".Activity.AllMyFollows"></activity>
+        <activity android:name=".Activity.FirstRegisterCompleteUserInfo_step3" />
         <activity android:name=".Activity.FirstRegisterCompleteUserInfo_step2" />
         <activity android:name=".Activity.FirstRegisterCompleteUserInfo_step1" />
         <activity android:name=".Activity.AddFoodActivity" />

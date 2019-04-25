@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.meiquan.Activity.AllMyFollows;
 import com.example.meiquan.Activity.SystemSettingActivity;
 import com.example.meiquan.Activity.personnalSettingActivity;
 import com.example.meiquan.GlobalData;
@@ -27,10 +28,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.OnItemClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyInfoFragment extends Fragment implements AdapterView.OnItemClickListener{
-    @BindView(R.id.iv_headImage) ImageView iv_headImage; //头像
+    @BindView(R.id.circle_headImage) CircleImageView circle_headImage; //头像
     @BindView(R.id.tv_nickname) TextView tv_nickname; //昵称
     @BindView(R.id.tv_phone) TextView tv_phone; //电话号码
 
@@ -52,8 +55,8 @@ public class MyInfoFragment extends Fragment implements AdapterView.OnItemClickL
     }
 
     void initList(){
-        int[]item_id = {R.id.tv_item};
-        String[]item_name={"text"};
+        int[]item_id = {R.id.img_item, R.id.tv_item};
+        String[]item_name={"img", "text"};
         sim_adapter = new SimpleAdapter(getActivity(), getData(), R.layout.listitem_myinfo, item_name, item_id);
         lv_MyInfo.setAdapter(sim_adapter);
         lv_MyInfo.setOnItemClickListener(this);
@@ -62,11 +65,18 @@ public class MyInfoFragment extends Fragment implements AdapterView.OnItemClickL
         datalist.clear();
         Map<String, Object>map1 = new HashMap<String, Object>();
         map1.put("text", "个人信息");
+        map1.put("img", R.drawable.myinfo);
         datalist.add(map1);
 
         Map<String, Object>map2 = new HashMap<String, Object>();
         map2.put("text", "系统设置");
+        map2.put("img", R.drawable.systemsetting);
         datalist.add(map2);
+
+        Map<String, Object>map3 = new HashMap<String, Object>();
+        map3.put("text", "系统设置");
+        map3.put("img", R.drawable.aboutus);
+        datalist.add(map3);
 
         return datalist;
     }
@@ -85,7 +95,9 @@ public class MyInfoFragment extends Fragment implements AdapterView.OnItemClickL
             }
         }
     }
-
+    @OnClick(R.id.tv_follow) void showfollow(){
+        startActivity(new Intent(getActivity(), AllMyFollows.class));
+    }
     void showToast(String msg) {
         Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }

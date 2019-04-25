@@ -8,30 +8,44 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
 
-        <ImageView
-            android:id="@+id/iv_headImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/headimage"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
-            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="40dp"
+            android:text="个人页面"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/circle_headImage"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/dog"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center_vertical"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/white"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_gravity="center_vertical"
             android:layout_margin="20dp">
             <TextView
                 android:id="@+id/tv_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="昵称"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 tools:layout_editor_absoluteX="203dp"
                 tools:layout_editor_absoluteY="74dp" />
 
@@ -40,28 +54,67 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="电话号"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="203dp"
                 tools:layout_editor_absoluteY="32dp" />
         </LinearLayout>
     </LinearLayout>
-    <ListView
-        android:id="@+id/lv_MyInfo"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/grey"
+            android:layout_marginEnd="100dp"
+            android:text="动态：0"/>
+        <TextView
+            android:id="@+id/tv_follow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/grey"
+            android:text="关注：0"/>
+    </LinearLayout>
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4">
-    </ListView>
-    <Button
-        android:id="@+id/btn_nextstep"
-        android:text="退出登录"
-        android:textSize="18sp"
-        android:textColor="@color/white"
+        android:layout_height="0.5dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/btn_logout_selector"
+        android:background="#80777777" />
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp" />
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ListView
+            android:id="@+id/lv_MyInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:dividerHeight="0.5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            >
+        </ListView>
+        <Button
+            android:id="@+id/btn_nextstep"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="退出登录"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btn_logout_selector" />
+    </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -12,5 +12,9 @@ public class Urls {
     public static String FoodCaloryServlet = HOSTWEB + "/FoodCaloryServlet";
     public static String TodayFoodServlet = HOSTWEB + "/TodayFoodServlet";
     public static String FirstRegisterServlet = HOSTWEB + "/FirstRegisterServlet";
+    public static String AddUserNewsServlet = HOSTWEB + "/AddUserNewsServlet";
+    public static String AddFriendServlet = HOSTWEB + "/AddFriendServlet";
+    public static String GetAllMyFollowsServlet = HOSTWEB + "/GetAllMyFollowsServlet";
+    public static String GetNewsServlet = HOSTWEB + "/GetNewsServlet";
     // http://localhost:8080/meiquanWebApp/LoginServlet
 }

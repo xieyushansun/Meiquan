@@ -1,46 +1,33 @@
 package com.example.meiquan.Activity;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.meiquan.Fragment.AdviceFragment;
+import com.example.meiquan.Fragment.NewFragment;
 import com.example.meiquan.Fragment.MyInfoFragment;
 import com.example.meiquan.Fragment.TodayFragment;
 import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
-import com.example.meiquan.entity.SportCalory;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 public class TabActivity extends AppCompatActivity {
     TabLayout mytab;
@@ -119,7 +106,7 @@ public class TabActivity extends AppCompatActivity {
         mFragment = new ArrayList<>();
         mFragment.add(new TodayFragment());
         mFragment.add(new AdviceFragment());
-        mFragment.add(new Fragment());
+        mFragment.add(new NewFragment());
         mFragment.add(new MyInfoFragment());
     }
 }
