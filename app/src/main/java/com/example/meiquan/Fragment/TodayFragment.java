@@ -6,16 +6,23 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.meiquan.Activity.AddFoodActivity;
 import com.example.meiquan.Activity.AddSportActivity;
+import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
+import com.example.meiquan.Urls;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 import java.util.ArrayList;
 
@@ -28,24 +35,56 @@ import butterknife.OnClick;
 
 
 public class TodayFragment extends Fragment {
-    @BindView(R.id.chart_food) BarChart barCInput;
+    @BindView(R.id.chart_food) BarChart chart_food;
+    @BindView(R.id.chart_sport) BarChart chart_sport;
     @OnClick(R.id.btn_addsport) void addsport(){
         startActivity(new Intent(getActivity(), AddSportActivity.class));
     }
     @OnClick(R.id.btn_addfood) void addfood(){
         startActivity(new Intent(getActivity(), AddFoodActivity.class));
     }
+    @OnClick(R.id.img_food_refresh) void food_refresh(){
+        initTodayFoodDataFromSever();
+
+    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, null, false);
         ButterKnife.bind(this, view);
-        showBarChart(barCInput, getBarData_food());
+        initTodayFoodDataFromSever();
+
 
         return view;
     }
 
-    private void showBarChart(final BarChart barChart, BarData barData) {
 
+    void initTodayFoodDataFromSever(){
+        OkGo.<String>post(Urls.TodayFoodServlet)
+                .params("phone", GlobalData.phone)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.fromJson(response.body(), JsonObject.class);
+                        GlobalData.total_morning_food = (int)jsonObject.get("total_morning").getAsDouble();
+                        GlobalData.total_aftermorning_food = (int)jsonObject.get("total_aftermorning").getAsDouble();
+                        GlobalData.total_noon_food = (int)jsonObject.get("total_noon").getAsDouble();
+                        GlobalData.total_afternoon_food = (int)jsonObject.get("total_afternoon").getAsDouble();
+                        GlobalData.total_night_food = (int)jsonObject.get("total_night").getAsDouble();
+                        GlobalData.total_afternight_food = (int)jsonObject.get("total_afternight").getAsDouble();
+                    }
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        showBarChart(chart_food, getBarData_food());
+                    }
+                });
+    }
+
+
+    private void showBarChart(final BarChart barChart, BarData barData) {
+        chart_food.notifyDataSetChanged();
+        chart_food.invalidate();
         barChart.setNoDataTextDescription("暂无数据");
         barChart.setData(barData); // 设置数据
         barChart.setDescription("");
@@ -53,7 +92,7 @@ public class TodayFragment extends Fragment {
         barChart.setDescription("");
         barChart.setDrawBarShadow(false);//柱状图没有数据的部分是否显示阴影效果
 
-        barChart.setTouchEnabled(true); // 设置是否可以触摸
+        barChart.setTouchEnabled(false); // 设置是否可以触摸
         barChart.setDragEnabled(false);// 是否可以拖拽
         barChart.setScaleEnabled(false);// 是否可以缩放
         barChart.setPinchZoom(false);//y轴的值是否跟随图表变换缩放;如果禁止，y轴的值会跟随图表变换缩放
@@ -77,26 +116,25 @@ public class TodayFragment extends Fragment {
         barChart.getAxisLeft().setTextColor(R.color.grey);
         barChart.getXAxis().setTextColor(R.color.grey);
         barChart.getAxisLeft().setGridColor(getResources().getColor(R.color.grid, null));
+
+        barChart.animateXY(1000,1500);
     }
 
     private BarData getBarData_food() {
 
         ArrayList<String> xValues = new ArrayList<String>();
         String []str_in_detail = {"早上", "上午", "中午", "下午", "晚上", "深夜"};
-        for (int i = 0; i <6; i++)
-        {
+        for (int i = 0; i <6; i++) {
             xValues.add(str_in_detail[i]);
         }
 
-
-
         ArrayList<BarEntry> yValues = new ArrayList<BarEntry>();
-        yValues.add(new BarEntry(1, 0));
-        yValues.add(new BarEntry(2, 1));
-        yValues.add(new BarEntry(3, 2));
-        yValues.add(new BarEntry(4, 3));
-        yValues.add(new BarEntry(5, 4));
-        yValues.add(new BarEntry(6, 5));
+        yValues.add(new BarEntry(GlobalData.total_morning_food, 0));
+        yValues.add(new BarEntry(GlobalData.total_aftermorning_food, 1));
+        yValues.add(new BarEntry(GlobalData.total_noon_food, 2));
+        yValues.add(new BarEntry(GlobalData.total_afternoon_food, 3));
+        yValues.add(new BarEntry(GlobalData.total_night_food, 4));
+        yValues.add(new BarEntry(GlobalData.total_afternight_food, 5));
 
         // y轴的数据集合
         BarDataSet barDataSet = new BarDataSet(yValues, "");
@@ -117,5 +155,8 @@ public class TodayFragment extends Fragment {
         BarData barData = new BarData(xValues, barDataSet);
         barData.setValueTextSize(15);
         return barData;
+    }
+    void showToast(String msg) {
+        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
     }
 }

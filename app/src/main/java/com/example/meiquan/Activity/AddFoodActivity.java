@@ -221,6 +221,7 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
 
     void submitData(){
         OkGo.<String>post(Urls.FoodRecordServlet)
+                .params("phone", GlobalData.phone)
                 .params("foodname", foodName)
                 .params("intake", intake)
                 .params("foodwhen", foodWhen)

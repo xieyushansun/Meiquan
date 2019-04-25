@@ -13,7 +13,7 @@
     <color name="pink">#E1FE6D67</color>
     <color name="white_pressed">#f1f1f1</color>
     <color name="black_semi_transparent">#B2000000</color>
-
+    <color name="rulePickerColor">#FAE40B</color>
     <color name="chartbackgroundClolor">#00FAEECE</color><!--#E2FAEECE-->
 
     <color name="grid">#9CBBBBBB</color>

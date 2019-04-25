@@ -257,6 +257,7 @@ public class AddSportActivity extends AppCompatActivity implements AdapterView.O
     }
     void submitData(){
         OkGo.<String>post(Urls.SportRecordServlet)
+                .params("phone", GlobalData.phone)
                 .params("sportname", sportName)
                 .params("sporthour", ""+SportHour)
                 .params("sportminute", ""+SportMinute)

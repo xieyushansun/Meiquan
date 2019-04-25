@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.FirstRegisterCompleteUserInfo_step1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="40dp"
+                android:text="完善个人资料  1/3"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/grey"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="性别"/>
+        <com.goodiebag.horizontalpicker.HorizontalPicker
+            android:id="@+id/hpText"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            app:textSize="18sp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="10dp"
+            app:itemMargin="20dp"
+            app:itemHeight="60dp"
+            app:itemWidth="60dp"
+            app:backgroundSelector="@drawable/selector_background_example"
+            app:textColorSelector="@drawable/selector_text_view" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_margin="20dp"
+            android:background="#80777777" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/grey"
+            android:layout_gravity="center"
+            android:text="类型"/>
+        <com.goodiebag.horizontalpicker.HorizontalPicker
+            android:id="@+id/profession"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            app:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            app:itemMargin="20dp"
+            app:itemHeight="60dp"
+            app:itemWidth="60dp"
+            app:backgroundSelector="@drawable/selector_background_example"
+            app:textColorSelector="@drawable/selector_text_view" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_margin="20dp"
+            android:background="#80777777" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/grey"
+            android:layout_gravity="center"
+            android:text="出生日期"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <com.cncoderx.wheelview.Wheel3DView
+                android:id="@+id/wheel_birthyear"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                app:cyclic="true"
+                app:selectedColor="@color/colorPrimary"
+                app:entries="@array/birthyear"
+                app:visibleItems="8"
+                app:toward="right"/>
+            <com.cncoderx.wheelview.Wheel3DView
+                android:id="@+id/wheel_birthmonth"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                app:cyclic="true"
+                app:selectedColor="@color/colorPrimary"
+                app:entries="@array/birthmonth"
+                app:visibleItems="8"
+                app:toward="right"/>
+            <com.cncoderx.wheelview.Wheel3DView
+                android:id="@+id/wheel_birthday"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                app:cyclic="true"
+                app:selectedColor="@color/colorPrimary"
+                app:entries="@array/birthday"
+                app:visibleItems="8"
+                app:toward="right"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_nextstep"
+        android:text="下一步"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/btn_nextstep_selector"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -5,18 +5,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-public class registActivity extends AppCompatActivity {
+public class registerActivity extends AppCompatActivity {
     @BindView(R.id.ed_phone) EditText ed_phone;
     @BindView(R.id.ed_password) EditText ed_password;
     @BindView(R.id.ed_passwordAgain) EditText ed_passwordAgain;
@@ -55,6 +57,9 @@ public class registActivity extends AppCompatActivity {
                         }
                         else if (response.body().compareTo("3") == 0){
                             showToast("注册成功！");
+                            GlobalData.phone = ed_phone.getText().toString();
+                            GlobalData.password = ed_password.getText().toString();
+                            startActivity(new Intent(registerActivity.this, FirstRegisterCompleteUserInfo_step1.class));
                         }
                     }
                 });
@@ -68,7 +73,7 @@ public class registActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//remove title bar  即隐藏标题栏
         getSupportActionBar().hide();// 隐藏ActionBar
-        setContentView(R.layout.activity_regist);
+        setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
     }
     void showToast(String msg) {

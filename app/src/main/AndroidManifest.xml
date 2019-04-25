@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".App"
@@ -18,11 +19,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Activity.AddFoodActivity"></activity>
+        <activity android:name=".Activity.FirstRegisterCompleteUserInfo_step3"></activity>
+        <activity android:name=".Activity.FirstRegisterCompleteUserInfo_step2" />
+        <activity android:name=".Activity.FirstRegisterCompleteUserInfo_step1" />
+        <activity android:name=".Activity.AddFoodActivity" />
         <activity android:name=".Activity.AddSportActivity" />
         <activity android:name=".Activity.SystemSettingActivity" />
         <activity android:name=".Activity.personnalSettingActivity" />
-        <activity android:name=".Activity.registActivity" />
+        <activity android:name=".Activity.registerActivity" />
         <activity android:name=".Activity.TabActivity" />
         <activity android:name=".Activity.MainActivity">
             <intent-filter>

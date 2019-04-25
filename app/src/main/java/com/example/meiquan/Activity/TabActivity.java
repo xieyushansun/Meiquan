@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.meiquan.Fragment.AdviceFragment;
 import com.example.meiquan.Fragment.MyInfoFragment;
 import com.example.meiquan.Fragment.TodayFragment;
 import com.example.meiquan.GlobalData;
@@ -117,7 +118,7 @@ public class TabActivity extends AppCompatActivity {
 
         mFragment = new ArrayList<>();
         mFragment.add(new TodayFragment());
-        mFragment.add(new Fragment());
+        mFragment.add(new AdviceFragment());
         mFragment.add(new Fragment());
         mFragment.add(new MyInfoFragment());
     }
