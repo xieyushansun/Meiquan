@@ -7,12 +7,16 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.ButterKnife;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.meiquan.Fragment.AdviceFragment;
 import com.example.meiquan.Fragment.NewFragment;
 import com.example.meiquan.Fragment.MyInfoFragment;
+import com.example.meiquan.Fragment.StoreFragment;
 import com.example.meiquan.Fragment.TodayFragment;
 import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
@@ -34,6 +38,13 @@ public class TabActivity extends AppCompatActivity {
     ViewPager mViewPager;
     List<String> mTitle;
     List<Fragment> mFragment;
+
+    //几个tab对应的Fragment对象
+    TodayFragment todayFragment = new TodayFragment();
+    AdviceFragment adviceFragment = new AdviceFragment();
+    NewFragment newFragment = new NewFragment();
+    StoreFragment storeFragment = new StoreFragment();
+    MyInfoFragment myInfoFragment = new MyInfoFragment();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -65,11 +76,28 @@ public class TabActivity extends AppCompatActivity {
         mytab.getTabAt(0).setIcon(R.drawable.todaytab_selector);
         mytab.getTabAt(1).setIcon(R.drawable.advicetab_selector);
         mytab.getTabAt(2).setIcon(R.drawable.newtab_selector);
-        mytab.getTabAt(3).setIcon(R.drawable.mytab_selector);
+        mytab.getTabAt(3).setIcon(R.drawable.storetab_selector);
+        mytab.getTabAt(4).setIcon(R.drawable.mytab_selector);
 
         //mytab.removeAllTabs();
-
         //mViewPager.setOffscreenPageLimit(4); //预加载tab页
+        mytab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+//                添加选中Tab的逻辑
+                //int n = tab.getPosition(); //标号从0开始
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+//                添加未选中Tab的逻辑
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+//                再次选中tab的逻辑
+            }
+        });
 
     }
     void showToast(String msg) {
@@ -87,6 +115,7 @@ public class TabActivity extends AppCompatActivity {
                         GlobalData.nickname = jsonObject.get("nickname").getAsString();
                         GlobalData.height = jsonObject.get("height").getAsInt();
                         GlobalData.weight = jsonObject.get("weight").getAsInt();
+                        GlobalData.headimage_url = jsonObject.get("headimage_url").getAsString();
                         //showToast("phone="+GlobalData.phone+"nickname"+GlobalData.nickname+
                         //  "height="+GlobalData.height+"weight="+GlobalData.weight);
                     }
@@ -101,12 +130,17 @@ public class TabActivity extends AppCompatActivity {
         mTitle.add("今日");
         mTitle.add("建议");
         mTitle.add("动态");
+        mTitle.add("商城");
         mTitle.add("我的");
 
         mFragment = new ArrayList<>();
-        mFragment.add(new TodayFragment());
-        mFragment.add(new AdviceFragment());
-        mFragment.add(new NewFragment());
-        mFragment.add(new MyInfoFragment());
+        mFragment.add(todayFragment);
+        mFragment.add(adviceFragment);
+        mFragment.add(newFragment);
+        mFragment.add(storeFragment);
+        mFragment.add(myInfoFragment);
     }
+
+
+
 }

@@ -1,5 +1,7 @@
 package com.example.meiquan;
 
+import android.widget.ImageView;
+
 import com.example.meiquan.entity.FoodCalory;
 import com.example.meiquan.entity.SportCalory;
 
@@ -7,7 +9,7 @@ import com.example.meiquan.entity.SportCalory;
 import java.util.List;
 
 
-public class GlobalData {
+public class GlobalData{
     public static String phone = "";
     public static String nickname = "";
     public static String password = "";
@@ -32,5 +34,14 @@ public class GlobalData {
     public static int total_afternoon_food = 0;  //下午
     public static int total_night_food = 0;  //晚上
     public static int total_afternight_food = 0;  //深夜
+
+    public static int total_morning_sport = 0;  //早上
+    public static int total_aftermorning_sport = 0;  //上午
+    public static int total_noon_sport = 0;  //中午
+    public static int total_afternoon_sport = 0;  //下午
+    public static int total_night_sport = 0;  //晚上
+    public static int total_afternight_sport = 0;  //深夜
+
+    public static String headimage_url = "";
 
 }

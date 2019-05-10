@@ -63,8 +63,6 @@ public class registerActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
     }
 
 
@@ -75,6 +73,7 @@ public class registerActivity extends AppCompatActivity {
         getSupportActionBar().hide();// 隐藏ActionBar
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
+
     }
     void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();

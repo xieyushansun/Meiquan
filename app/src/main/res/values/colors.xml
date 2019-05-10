@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#62CC74</color>
-    <color name="colorPrimaryDark">#62CC74</color>
+
     <color name="colorAccent">#FFDF82</color>
     <color name="line">#727272</color>
     <color name="grey">#8a8a8a</color>
@@ -17,4 +17,6 @@
     <color name="chartbackgroundClolor">#00FAEECE</color><!--#E2FAEECE-->
 
     <color name="grid">#9CBBBBBB</color>
+
+    <color name="colorPrimaryDark">#62CC74</color>
 </resources>
