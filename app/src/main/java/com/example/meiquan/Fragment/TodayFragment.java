@@ -6,13 +6,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.TextView;
 
 import com.example.meiquan.Activity.AddFoodActivity;
 import com.example.meiquan.Activity.AddSportActivity;
+import com.example.meiquan.Activity.FoodDetailActivity;
 import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
+import com.example.meiquan.entity.FoodCalory;
+import com.example.meiquan.util.CalculateCaloryForOneDay;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -20,12 +26,13 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-
+import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -37,11 +44,25 @@ import butterknife.OnClick;
 public class TodayFragment extends Fragment {
     @BindView(R.id.chart_food) BarChart chart_food;
     @BindView(R.id.chart_sport) BarChart chart_sport;
+    @BindView(R.id.tv_todaycalory) TextView tv_todaycalory;
+    @BindView(R.id.tv_total_food) TextView tv_total_food;
+    @BindView(R.id.tv_total_sport) TextView tv_total_sport;
+    List<String> data =new ArrayList<String>();
+    @BindView(R.id.act_searchfooddetail) AutoCompleteTextView act_searchfooddetail;
     @OnClick(R.id.btn_addsport) void addsport(){
-        startActivity(new Intent(getActivity(), AddSportActivity.class));
+        startActivityForResult(new Intent(getActivity(), AddSportActivity.class), 110);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 110) {
+            initTodayFoodDataFromSever();
+        }
+    }
+
     @OnClick(R.id.btn_addfood) void addfood(){
-        startActivity(new Intent(getActivity(), AddFoodActivity.class));
+        startActivityForResult(new Intent(getActivity(), AddFoodActivity.class), 110);
     }
     @OnClick(R.id.img_food_refresh) void food_refresh(){
         initTodayFoodDataFromSever();
@@ -55,8 +76,34 @@ public class TodayFragment extends Fragment {
         ButterKnife.bind(this, view);
         initTodayFoodDataFromSever();
         initTodaySportDataFromSever();
+        initActInput();
+        act_searchfooddetail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String foodName = parent.getItemAtPosition(position).toString(); //获取点击内容
+                Intent intent = new Intent(getContext(), FoodDetailActivity.class);
+                intent.putExtra("foodName", foodName );
+                startActivity(intent);
+
+            }
+        });
         return view;
     }
+    void initTotalCalory(){
+        //计算今日可摄入卡路里
+        CalculateCaloryForOneDay calculateCaloryForOneDay = new CalculateCaloryForOneDay();
+        double temp = calculateCaloryForOneDay.getTotalCalory();
+        int totalCalory = (int)temp;
+        int total_sport = GlobalData.total_sport;
+        int total_food = GlobalData.total_food;
+        totalCalory = totalCalory - total_food + total_sport;
+        if (totalCalory < 0){
+            totalCalory = 0;
+        }
+        tv_todaycalory.setText(String.valueOf(totalCalory));
+    }
+
+    //食物图表
     void initTodayFoodDataFromSever(){
         OkGo.<String>post(Urls.TodayFoodServlet)
                 .params("phone", GlobalData.phone)
@@ -71,11 +118,19 @@ public class TodayFragment extends Fragment {
                         GlobalData.total_afternoon_food = (int)jsonObject.get("total_afternoon").getAsDouble();
                         GlobalData.total_night_food = (int)jsonObject.get("total_night").getAsDouble();
                         GlobalData.total_afternight_food = (int)jsonObject.get("total_afternight").getAsDouble();
+                        GlobalData.total_food = GlobalData.total_morning_food
+                                + GlobalData.total_aftermorning_food
+                                + GlobalData.total_noon_food
+                                + GlobalData.total_afternoon_food
+                                + GlobalData.total_night_food
+                                + GlobalData.total_afternight_food;
                     }
                     @Override
                     public void onFinish() {
                         super.onFinish();
                         showBarChartFood(chart_food, getBarData_food());
+                        tv_total_food.setText("今日已摄入："+GlobalData.total_food+"大卡");
+                        initTodaySportDataFromSever();
                     }
                 });
     }
@@ -153,6 +208,7 @@ public class TodayFragment extends Fragment {
         return barData;
     }
 
+    //运动图表
     void initTodaySportDataFromSever(){
         OkGo.<String>post(Urls.TodaySportServlet)
                 .params("phone", GlobalData.phone)
@@ -167,11 +223,19 @@ public class TodayFragment extends Fragment {
                         GlobalData.total_afternoon_sport = (int)jsonObject.get("total_afternoon").getAsDouble();
                         GlobalData.total_night_sport = (int)jsonObject.get("total_night").getAsDouble();
                         GlobalData.total_afternight_sport = (int)jsonObject.get("total_afternight").getAsDouble();
+                        GlobalData.total_sport = GlobalData.total_morning_sport
+                                + GlobalData.total_aftermorning_sport
+                                + GlobalData.total_noon_sport
+                                + GlobalData.total_afternoon_sport
+                                + GlobalData.total_night_sport
+                                + GlobalData.total_afternight_sport;
                     }
                     @Override
                     public void onFinish() {
                         super.onFinish();
+                        tv_total_sport.setText("今日已消耗："+GlobalData.total_sport+"大卡");
                         showBarChartSport(chart_sport, getBarData_sport());
+                        initTotalCalory();
                     }
                 });
     }
@@ -249,7 +313,26 @@ public class TodayFragment extends Fragment {
         return barData;
     }
 
-    void showToast(String msg) {
-        Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+    //初始化搜索框
+    void initActInput(){
+        act_searchfooddetail.setThreshold(0); //设置输入一个字符就开始提示
+        OkGo.<String>get(Urls.FoodCaloryServlet)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        Type type = new TypeToken<List<FoodCalory>>(){}.getType();
+                        GlobalData.foodCaloryList = new Gson().fromJson(response.body(),type);
+                        for (int i = 0; i < GlobalData.foodCaloryList.size(); i++){
+                            data.add(GlobalData.foodCaloryList.get(i).getFoodname());
+                        }
+                    }
+                });
+
+        //data = getResources().getStringArray(R.array.inputArray);  //从arrays.xml中获取字符串
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, data);
+        act_searchfooddetail.setAdapter(adapter);
     }
+
 }

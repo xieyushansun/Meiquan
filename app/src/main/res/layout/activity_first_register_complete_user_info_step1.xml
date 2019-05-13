@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="40dp"
-                android:text="完善个人资料  1/3"
+                android:text="完善个人资料  1/4"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>

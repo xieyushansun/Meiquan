@@ -5,7 +5,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.meiquan.R;
 import com.google.gson.JsonObject;
 
-import org.json.JSONObject;
 
 public class CommentAdapter extends BaseQuickAdapter<JsonObject, BaseViewHolder> {
     public CommentAdapter(int layoutResId) {

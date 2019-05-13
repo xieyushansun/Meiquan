@@ -46,7 +46,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import es.dmoral.toasty.Toasty;
 import me.shaohui.bottomdialog.BottomDialog;
 
-public class NewFragment extends Fragment {
+public class NewsFragment extends Fragment {
     BottomDialog bottomDialog;
     @BindView(R.id.lv_new) RecyclerView lv_new;
     @BindView(R.id.top_headimage) CircleImageView top_headimage;
@@ -65,10 +65,7 @@ public class NewFragment extends Fragment {
         }*/
         View view = inflater.inflate(R.layout.fragment_new, null, false);
         ButterKnife.bind(this, view);
-
         lv_new.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
         sw_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -77,20 +74,6 @@ public class NewFragment extends Fragment {
         });
         sw_refresh.setRefreshing(true);
         loadnew();
-
-        /*btn_like.setOnLikeListener(new OnLikeListener() {
-            @Override
-            public void liked(LikeButton likeButton) {
-                int n = Integer.valueOf(tv_likenumber.getText().toString());
-                tv_likenumber.setText(n+1);
-            }
-
-            @Override
-            public void unLiked(LikeButton likeButton) {
-
-            }
-        });*/
-
 
         return view;
     }
@@ -105,14 +88,11 @@ public class NewFragment extends Fragment {
                     @Override
                     public void onSuccess(Response<String> response) {
                         newList = GsonUtils.fromJson(response.body(), GsonUtils.getListType(JsonObject.class));
-
-
                         NewsAdapter newsAdapter = new NewsAdapter(R.layout.listitem_news, getFragmentManager());
                         newsAdapter.bindToRecyclerView(lv_new);
                         newsAdapter.setNewData(newList);
                         //加载完成
                         sw_refresh.setRefreshing(false);
-
                     }
                 });
     }
@@ -138,7 +118,6 @@ public class NewFragment extends Fragment {
                                     showToast("请输入内容");
                                     return;
                                 }
-
                                 if (image != null){
                                     OkGo.<String>post(Urls.AddUserNewsServlet)
                                             .params("phone", GlobalData.phone)
@@ -222,25 +201,6 @@ public class NewFragment extends Fragment {
 
                 m_img_showimage.setVisibility(View.VISIBLE);
                 Glide.with(this).load(images.get(0).path).into(m_img_showimage);
-
-                /*OkGo.<String>post(Urls.ChangeHeadImageServlet)
-                        .params("HeadImage", headImage)
-                        .params("phone", GlobalData.phone)
-                        .execute(new StringCallback() {
-                            @Override
-                            public void onSuccess(Response<String> response) {
-                                if (response.body().compareTo("1") == 0){
-                                    //circle_headImage
-                                    Bitmap bt = BitmapFactory.decodeFile(images.get(0).path);
-                                    circle_headImage.setImageBitmap(bt);
-                                    circle_headImage.invalidate();
-                                    ToastUtils.showShort("头像修改成功");
-                                }else {
-                                    ToastUtils.showShort("头像修改失败");
-                                }
-
-                            }
-                        });*/
 
             } else {
                 showToast("没有数据");

@@ -136,30 +136,7 @@ public class FirstRegisterCompleteUserInfo_step3 extends AppCompatActivity {
         }
         GlobalData.province = provinceName;
         GlobalData.city = cityName;
-        OkGo.<String> post(Urls.FirstRegisterServlet)
-                .params("phone", GlobalData.phone)
-                .params("sex", GlobalData.sex)
-                .params("birthyear", GlobalData.birthyear)
-                .params("birthmonth", GlobalData.birthmonth)
-                .params("birthday", GlobalData.birthday)
-                .params("type", GlobalData.type)
-                .params("province", GlobalData.province)
-                .params("city", GlobalData.city)
-                .params("height", GlobalData.height)
-                .params("weight", GlobalData.weight)
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        if (response.body().compareTo("1") == 0){
-                            showToast("信息完善成功");
-                            startActivity(new Intent(FirstRegisterCompleteUserInfo_step3.this, TabActivity.class));
-                            finish();
-                        }else {
-                            showToast("信息完成失败");
-                        }
-
-                    }
-                });
+        startActivity(new Intent(FirstRegisterCompleteUserInfo_step3.this, FirstRegisterCompleteUserInfo_step4.class));
     }
     void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();

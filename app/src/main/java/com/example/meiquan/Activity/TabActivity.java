@@ -7,14 +7,10 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.ButterKnife;
 
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.Window;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.meiquan.Fragment.AdviceFragment;
-import com.example.meiquan.Fragment.NewFragment;
+import com.example.meiquan.Fragment.NewsFragment;
 import com.example.meiquan.Fragment.MyInfoFragment;
 import com.example.meiquan.Fragment.StoreFragment;
 import com.example.meiquan.Fragment.TodayFragment;
@@ -39,10 +35,12 @@ public class TabActivity extends AppCompatActivity {
     List<String> mTitle;
     List<Fragment> mFragment;
 
+
+
     //几个tab对应的Fragment对象
     TodayFragment todayFragment = new TodayFragment();
     AdviceFragment adviceFragment = new AdviceFragment();
-    NewFragment newFragment = new NewFragment();
+    NewsFragment newFragment = new NewsFragment();
     StoreFragment storeFragment = new StoreFragment();
     MyInfoFragment myInfoFragment = new MyInfoFragment();
 
@@ -54,7 +52,57 @@ public class TabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab);
         ButterKnife.bind(this);
         getUserInfo();
-        initTab();
+        //initTab();
+
+    }
+
+    void getUserInfo(){
+        OkGo.<String>post(Urls.GetUserInfoServlet)
+                .params("phone", GlobalData.phone)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        //如果登录成功，就获取用户其它资料
+                        Gson gson = new Gson();
+                        JsonObject jsonObject = gson.fromJson(response.body(), JsonObject.class);
+                        GlobalData.nickname = jsonObject.get("nickname").getAsString();
+                        GlobalData.height = jsonObject.get("height").getAsInt();
+                        GlobalData.weight = jsonObject.get("weight").getAsInt();
+                        GlobalData.headimage_url = jsonObject.get("headimage_url").getAsString();
+                        GlobalData.sportintensity = jsonObject.get("sportintensity").getAsDouble();
+                        GlobalData.birthyear = jsonObject.get("birthyear").getAsInt();
+                        GlobalData.birthmonth = jsonObject.get("birthmonth").getAsInt();
+                        GlobalData.birthday = jsonObject.get("birthday").getAsInt();
+                        GlobalData.province = jsonObject.get("province").getAsString();
+                        GlobalData.city = jsonObject.get("city").getAsString();
+                        GlobalData.type = jsonObject.get("type").getAsString();
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        super.onFinish();
+                        initTab();
+                    }
+                });
+
+    }
+    void initTab(){
+        mytab =findViewById(R.id.tabLayout);
+        mViewPager = findViewById(R.id.viewpager);
+
+        mTitle = new ArrayList<>();
+        mTitle.add("今日");
+        mTitle.add("建议");
+        mTitle.add("动态");
+        mTitle.add("商城");
+        mTitle.add("我的");
+
+        mFragment = new ArrayList<>();
+        mFragment.add(todayFragment);
+        mFragment.add(adviceFragment);
+        mFragment.add(newFragment);
+        mFragment.add(storeFragment);
+        mFragment.add(myInfoFragment);
 
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -99,46 +147,6 @@ public class TabActivity extends AppCompatActivity {
             }
         });
 
-    }
-    void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-    void getUserInfo(){
-        OkGo.<String>post(Urls.GetUserInfoServlet)
-                .params("phone", GlobalData.phone)
-                .execute(new StringCallback() {
-                    @Override
-                    public void onSuccess(Response<String> response) {
-                        //如果登录成功，就获取用户其它资料
-                        Gson gson = new Gson();
-                        JsonObject jsonObject = gson.fromJson(response.body(), JsonObject.class);
-                        GlobalData.nickname = jsonObject.get("nickname").getAsString();
-                        GlobalData.height = jsonObject.get("height").getAsInt();
-                        GlobalData.weight = jsonObject.get("weight").getAsInt();
-                        GlobalData.headimage_url = jsonObject.get("headimage_url").getAsString();
-                        //showToast("phone="+GlobalData.phone+"nickname"+GlobalData.nickname+
-                        //  "height="+GlobalData.height+"weight="+GlobalData.weight);
-                    }
-                });
-
-    }
-    void initTab(){
-        mytab = (TabLayout) findViewById(R.id.tabLayout);
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
-
-        mTitle = new ArrayList<>();
-        mTitle.add("今日");
-        mTitle.add("建议");
-        mTitle.add("动态");
-        mTitle.add("商城");
-        mTitle.add("我的");
-
-        mFragment = new ArrayList<>();
-        mFragment.add(todayFragment);
-        mFragment.add(adviceFragment);
-        mFragment.add(newFragment);
-        mFragment.add(storeFragment);
-        mFragment.add(myInfoFragment);
     }
 
 

@@ -9,7 +9,7 @@
         android:layout_height="70dp"
         android:background="@color/colorPrimary">
         <AutoCompleteTextView
-            android:id="@+id/act_input"
+            android:id="@+id/act_searchfooddetail"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -18,7 +18,8 @@
             android:drawableEnd="@drawable/close"
             android:drawableStart="@drawable/enlargeglass"
             android:drawablePadding="10dp"
-            android:hint="搜索食物热量"
+            android:inputType="text"
+            android:hint="搜索食物热量和营养"
             android:maxLines="1"
             android:textCursorDrawable="@drawable/my_cursor"
             android:textColor="@color/grey"
@@ -45,9 +46,10 @@
                     android:layout_marginTop="50dp"
                     android:layout_gravity="center_horizontal"/>
                 <TextView
+                    android:id="@+id/tv_todaycalory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1652"
+                    android:text=""
                     android:textColor="#fff"
                     android:fontFamily="@font/gotham"
                     android:textSize="50sp"
@@ -61,8 +63,8 @@
                     />
                 <com.getbase.floatingactionbutton.FloatingActionsMenu
                     android:id="@+id/multiple_actions"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="right"
                     fab:fab_addButtonColorNormal="@color/white"
                     fab:fab_addButtonColorPressed="@color/white_pressed"
@@ -89,6 +91,34 @@
 
                 </com.getbase.floatingactionbutton.FloatingActionsMenu>
             </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:id="@+id/tv_total_sport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey"
+                    android:layout_marginBottom="10dp" />
+                <TextView
+                    android:id="@+id/tv_total_food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey"
+                    android:layout_marginStart="20dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="#80777777" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

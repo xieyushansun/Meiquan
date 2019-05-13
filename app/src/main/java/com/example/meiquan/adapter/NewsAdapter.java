@@ -1,17 +1,18 @@
 package com.example.meiquan.adapter;
 
+import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.GsonUtils;
-import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.example.meiquan.Activity.PhotoViewActivity;
 import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
@@ -25,7 +26,6 @@ import com.lzy.okgo.model.Response;
 import java.util.List;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,8 +44,6 @@ public class NewsAdapter extends BaseQuickAdapter<JsonObject, BaseViewHolder> {
 
         this.fragmentManager = fragmentManager;
     }
-
-
 
     @Override
     protected void convert(BaseViewHolder helper, JsonObject item) {
@@ -70,6 +68,15 @@ public class NewsAdapter extends BaseQuickAdapter<JsonObject, BaseViewHolder> {
             ImageView img_showimage = helper.getView(R.id.img_showimage);
             img_showimage.setVisibility(View.VISIBLE);
             Glide.with(mContext).load(image_url).into(img_showimage);
+            img_showimage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, PhotoViewActivity.class);
+                    intent.putExtra("image_url", image_url);
+
+                    ActivityUtils.startActivity(intent);
+                }
+            });
         }
         //获取头像
         String s2 = item.get("headimage_url").getAsString();
@@ -157,8 +164,6 @@ public class NewsAdapter extends BaseQuickAdapter<JsonObject, BaseViewHolder> {
                     @Override
                     public void onSuccess(Response<String> response) {
                         List<JsonObject> commentList = GsonUtils.fromJson(response.body(), GsonUtils.getListType(JsonObject.class));
-
-
                         CommentAdapter commentAdapter = new CommentAdapter(R.layout.listitem_comment);
                         commentAdapter.bindToRecyclerView(lv_comment);
                         commentAdapter.setNewData(commentList);

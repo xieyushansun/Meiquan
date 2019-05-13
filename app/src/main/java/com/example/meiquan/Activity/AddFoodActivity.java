@@ -20,6 +20,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.cncoderx.wheelview.OnWheelChangedListener;
 import com.cncoderx.wheelview.WheelView;
 import com.example.meiquan.GlobalData;
@@ -90,7 +91,7 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
                     public void onClick(View v) {
                         //Toast.makeText(getApplicationContext(), input_edt.getText().toString(),Toast.LENGTH_LONG).show();
                         if (ed_intake.getText().toString().isEmpty()){
-                            showToast("请输入食物用量");
+                            ToastUtils.showShort("请输入食物用量");
                             return;
                         }
                         intake = Integer.valueOf(ed_intake.getText().toString());  //获取食用量
@@ -195,7 +196,7 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(), input_edt.getText().toString(),Toast.LENGTH_LONG).show();
                 if (ed_intake.getText().toString().isEmpty()){
-                    showToast("请输入食物用量");
+                    ToastUtils.showShort("请输入食物用量");
                     return;
                 }
                 intake = Integer.valueOf(ed_intake.getText().toString());  //获取食用量
@@ -230,15 +231,11 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
                     public void onSuccess(Response<String> response) {
                         //获取返回的信息 1或者0
                         if (response.body().compareTo("1") == 0){
-                            showToast("您已成功添加");
+                            ToastUtils.showShort("您已成功添加");
                         }else{
-                            showToast("添加失败，请稍后重试");
+                            ToastUtils.showShort("添加失败，请稍后重试");
                         }
                     }
                 });
     }
-    void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
 }

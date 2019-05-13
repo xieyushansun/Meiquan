@@ -22,5 +22,7 @@ public class Urls {
     public static String LikeServlet = HOSTWEB + "/LikeServlet";
     public static String GetNewsCommentServlet = HOSTWEB + "/GetNewsCommentServlet";
     public static String AddCommentServlet = HOSTWEB + "/AddCommentServlet";
+    public static String GetFoodNutrientServlet = HOSTWEB + "/GetFoodNutrientServlet";
+    public static String GetWeekAdviceServlet = HOSTWEB + "/GetWeekAdviceServlet";
     // http://localhost:8080/meiquanWebApp/LoginServlet
 }

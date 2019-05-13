@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="40dp"
-                android:text="完善个人资料  3/3"
+                android:text="完善个人资料  3/4"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -42,7 +42,7 @@
     </LinearLayout>
     <Button
         android:id="@+id/btn_nextstep"
-        android:text="完成"
+        android:text="下一步"
         android:textSize="18sp"
         android:textColor="@color/white"
         android:layout_marginStart="20dp"

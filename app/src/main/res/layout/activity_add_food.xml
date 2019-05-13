@@ -40,6 +40,7 @@
             android:drawablePadding="10dp"
             android:hint="请输入食物名称"
             android:maxLines="1"
+            android:inputType="text"
             android:textCursorDrawable="@drawable/my_cursor"
             android:textColor="@color/grey"
             android:layout_margin="@dimen/margin"

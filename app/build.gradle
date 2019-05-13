@@ -62,4 +62,9 @@ dependencies {
 
     implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
+    implementation 'com.xhb.jxnk25:MailLineView:1.1.0'    /*分割线*/
+
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'  /*图片查看器*/
+
+
 }
