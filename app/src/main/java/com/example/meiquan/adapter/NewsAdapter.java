@@ -50,7 +50,7 @@ public class NewsAdapter extends BaseQuickAdapter<JsonObject, BaseViewHolder> {
         //R.id.tv_content, R.id.img_showimage, R.id.tv_sendtime
         helper.setText(R.id.tv_phone, item.get("phone").getAsString());
         helper.setText(R.id.tv_content, item.get("content").getAsString());
-        helper.setText(R.id.tv_sendtime, item.get("sendtime").getAsString());
+        helper.setText(R.id.tv_sendtime, item.get("sendtime").getAsString().replace(".0", ""));
         helper.setText(R.id.tv_nickname, item.get("nickname").getAsString());
         helper.setText(R.id.tv_likenumber, item.get("likenumber").getAsString());
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--
-    <string-array name="inputArray">
-        <item>骑车</item>
-        <item>逛街</item>
-        <item>跑步</item>
-        <item>快走</item>
-    </string-array>
--->
+    <!--
+        <string-array name="inputArray">
+            <item>骑车</item>
+            <item>逛街</item>
+            <item>跑步</item>
+            <item>快走</item>
+        </string-array>
+    -->
     <string-array name="birthyear">
         <item>1960年</item>
         <item>1961年</item>
@@ -881,6 +881,6 @@
 
 </resources>
 
-<!--  java代码中调用
-String[] arrays = getResources().getStringArray(R.array.fileEndingImage)
--->
+    <!--  java代码中调用
+    String[] arrays = getResources().getStringArray(R.array.fileEndingImage)
+    -->

@@ -25,5 +25,10 @@ public class Urls {
     public static String GetFoodNutrientServlet = HOSTWEB + "/GetFoodNutrientServlet";
     public static String GetWeekAdviceServlet = HOSTWEB + "/GetWeekAdviceServlet";
     public static String GetCommodityServlet = HOSTWEB + "/GetCommodityServlet";
+    public static String AddBuyRecordServlet = HOSTWEB + "/AddBuyRecordServlet";
+    public static String GetMyOrderServlet = HOSTWEB + "/GetMyOrderServlet";
+    public static String ConfirmAcceptServlet = HOSTWEB + "/ConfirmAcceptServlet";
+    public static String AddToShoppingCarServlet = HOSTWEB + "/AddToShoppingCarServlet";
+    public static String GetShoppingCarServlet = HOSTWEB + "/GetShoppingCarServlet";
     // http://localhost:8080/meiquanWebApp/LoginServlet
 }

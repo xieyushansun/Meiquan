@@ -6,7 +6,6 @@ import android.view.Window;
 import com.blankj.utilcode.util.GsonUtils;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
-import com.example.meiquan.adapter.FoodCommodityAdapter;
 import com.example.meiquan.adapter.SportCommodityAdapter;
 import com.google.gson.JsonObject;
 import com.lzy.okgo.OkGo;

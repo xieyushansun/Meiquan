@@ -9,11 +9,14 @@ import android.widget.ImageView;
 
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.example.meiquan.Activity.CheckMyOrderActivity;
 import com.example.meiquan.Activity.CommodityFoodActivity;
 import com.example.meiquan.Activity.CommoditySportActivity;
+import com.example.meiquan.Activity.ShoppingCarActivity;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
 import com.example.meiquan.adapter.FoodCommodityAdapter;
+import com.example.meiquan.adapter.tuijieCommodityAdapter;
 import com.example.meiquan.util.GlideImageLoader;
 import com.example.meiquan.util.GlideImageLoaderOfBanner;
 import com.google.gson.JsonObject;
@@ -67,6 +70,12 @@ public class StoreFragment extends Fragment {
     @OnClick(R.id.img_yundongqicai) void showSportCommodity(){
         startActivity(new Intent(getActivity(), CommoditySportActivity.class));
     }
+    @OnClick(R.id.img_myorder) void showMyOrder(){
+        startActivity(new Intent(getActivity(), CheckMyOrderActivity.class));
+    }
+    @OnClick(R.id.img_shoppingcar) void showShoppingCar(){
+        startActivity(new Intent(getActivity(), ShoppingCarActivity.class));
+    }
     void initTuijie(){
         OkGo.<String>post(Urls.GetCommodityServlet)
                 .params("commodity_type", "allcommodity")
@@ -74,9 +83,9 @@ public class StoreFragment extends Fragment {
                     @Override
                     public void onSuccess(Response<String> response) {
                         List<JsonObject> commodityTuijieList = GsonUtils.fromJson(response.body(), GsonUtils.getListType(JsonObject.class));
-                        FoodCommodityAdapter foodCommodityAdapter = new FoodCommodityAdapter(R.layout.listitem_commodity);
-                        foodCommodityAdapter.bindToRecyclerView(lv_tuijiecommodity);
-                        foodCommodityAdapter.setNewData(commodityTuijieList);
+                        tuijieCommodityAdapter tuijieCommodityAdapter = new tuijieCommodityAdapter(R.layout.listitem_commodity);
+                        tuijieCommodityAdapter.bindToRecyclerView(lv_tuijiecommodity);
+                        tuijieCommodityAdapter.setNewData(commodityTuijieList);
                     }
                 });
     }

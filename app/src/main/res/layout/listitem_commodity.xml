@@ -25,7 +25,7 @@
                 android:text="巧克力夹心蛋奶"
                 android:layout_marginTop="40dp"
                 android:layout_marginStart="20dp"
-                android:textColor="#9B9B9B"
+                android:textColor="#0F0F0F"
                 android:textSize="18sp" />
 
             <TextView
