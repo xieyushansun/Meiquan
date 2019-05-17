@@ -15,6 +15,5 @@ public class CommentAdapter extends BaseQuickAdapter<JsonObject, BaseViewHolder>
     protected void convert(BaseViewHolder helper, JsonObject item) {
         helper.setText(R.id.tv_nickname, item.get("nickname").getAsString()+"：");
         helper.setText(R.id.tv_comment, item.get("content").getAsString());
-
     }
 }

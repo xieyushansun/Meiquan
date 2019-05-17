@@ -73,7 +73,6 @@ public class NewsAdapter extends BaseQuickAdapter<JsonObject, BaseViewHolder> {
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, PhotoViewActivity.class);
                     intent.putExtra("image_url", image_url);
-
                     ActivityUtils.startActivity(intent);
                 }
             });

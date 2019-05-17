@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal" >
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -18,14 +18,17 @@
             android:orientation="vertical"
             android:gravity="center" >
             <ImageView
+                android:id="@+id/img_yundongqicai"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/home_category" />
+                android:src="@drawable/yundongqicai" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="运动器材"
-                android:textSize="14sp"  />
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp"  />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -34,14 +37,17 @@
             android:orientation="vertical"
             android:gravity="center" >
             <ImageView
+                android:id="@+id/img_jinxuanshicai"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/home_logistics" />
+                android:src="@drawable/jinxuanshicai" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="精选食材"
-                android:textSize="14sp" />
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp" />
 
         </LinearLayout>
         <LinearLayout
@@ -53,12 +59,14 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/home_shopcar" />
+                android:src="@drawable/gouwuche" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="购物车"
-                android:textSize="14sp"  />
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp"  />
 
         </LinearLayout>
         <LinearLayout
@@ -70,90 +78,15 @@
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/home_jd" />
+                android:src="@drawable/wodedingdan" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="物流查询"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal" >
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center" >
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/home_recharge" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="充值中心"
-                android:textSize="14sp"  />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center" >
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/home_ticket" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="领劵中心"
-                android:textSize="14sp"  />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center" >
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/home_jdmarket" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我的订单"
-                android:textSize="14sp"  />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical" >
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/home_follow" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="个人中心"
-                android:textSize="14sp"  />
+                android:layout_marginTop="5dp"
+                android:textColor="@color/grey"
+                android:textSize="12sp" />
 
         </LinearLayout>
     </LinearLayout>

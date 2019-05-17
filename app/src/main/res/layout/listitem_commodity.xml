@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+        <ImageView
+            android:id="@+id/img_commodity"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/food"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_commodityname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="巧克力夹心蛋奶"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:textColor="#9B9B9B"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_commodityprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/tv_commodityname"
+                android:layout_centerVertical="true"
+                android:text="29.9元"
+                android:textColor="#F00"
+                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp">
+                <ImageView
+                    android:id="@+id/img_addtoshoppingcar"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/shoppingcar"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"/>
+                <Button
+                    android:id="@+id/btn_buy"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:text="立刻购买"
+                    android:textColor="@color/colorPrimary"
+                    android:background="@drawable/buybtn_selector"
+                    />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+

@@ -28,7 +28,7 @@ public class FoodDetailActivity extends AppCompatActivity {
     NutrientAdapter nutrientAdapter = new NutrientAdapter(R.layout.listitem_foodnutrient);
     @BindView(R.id.lv_nutrient) RecyclerView lv_nutrient;
     @BindView(R.id.tv_calorynumber) TextView tv_calorynumber;
-
+    @BindView(R.id.tv_foodname) TextView tv_foodname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class FoodDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         String foodName = getIntent().getStringExtra("foodName");
-
+        tv_foodname.setText(foodName);
         lv_nutrient.setLayoutManager(new LinearLayoutManager(this));
         nutrientAdapter.bindToRecyclerView(lv_nutrient);
 
