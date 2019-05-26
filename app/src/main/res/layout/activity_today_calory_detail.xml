@@ -1,43 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AllMyFollowsActivity"
-    android:orientation="vertical"
-    >
+    tools:context=".Activity.TodayCaloryDetailActivity"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal">
+        android:background="@color/colorPrimary">
         <ImageView
             android:id="@+id/btn_back"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="24dp"
+            android:layout_height="22dp"
             android:background="@drawable/back"
             android:layout_marginStart="15dp"
             android:layout_gravity="center_vertical"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="40dp"
-            android:text="我的关注"
+            android:layout_marginStart="20dp"
+            android:layout_weight="1"
+            android:text="详情"
             android:textColor="@color/white"
             android:textSize="20sp" />
-        <ImageView
-            android:id="@+id/img_addnewfriend"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/addnews"
-            android:layout_marginStart="190dp"
-            android:layout_gravity="center_vertical"/>
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lv_allmyfollows"
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#66E7E6E6"/>
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lv_todaycalorydetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.appcompat.widget.LinearLayoutCompat>

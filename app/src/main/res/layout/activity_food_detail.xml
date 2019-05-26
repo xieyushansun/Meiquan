@@ -91,7 +91,7 @@
                     android:id="@+id/tv_calorynumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="116"
+                    android:text=""
                     android:layout_gravity="center_horizontal"
                     android:textStyle="bold"
                     android:textSize="40sp"

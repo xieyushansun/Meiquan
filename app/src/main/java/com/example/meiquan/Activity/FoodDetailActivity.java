@@ -55,6 +55,10 @@ public class FoodDetailActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Response<String> response) {
                         List<JsonObject> jsonObjectList = GsonUtils.fromJson(response.body(), GsonUtils.getListType(JsonObject.class));
+                        if (jsonObjectList.isEmpty()){
+                            tv_foodname.setText("");
+                            return;
+                        }
                         tv_calorynumber.setText(jsonObjectList.get(0).get("number").toString().replace("大卡", "").replace("\"", ""));
                         nutrientAdapter.setNewData(jsonObjectList);
                     }

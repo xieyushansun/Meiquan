@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimary">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,7 +17,6 @@
             android:text="关注好友动态"
             android:textColor="@color/white"
             android:textSize="20sp" />
-
         <ImageView
             android:id="@+id/img_addmynews"
             android:layout_width="20dp"
@@ -27,62 +25,92 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/addnews" />
     </LinearLayout>
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/sw_refresh"
+
+    <TabHost
+        android:id="@+id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.core.widget.NestedScrollView
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TabWidget
+                android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
+                android:layout_height="wrap_content" />
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
                 <LinearLayout
+                    android:id="@+id/tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-
-                    <FrameLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="340dp">
-
-                        <ImageView
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="right"
+                        android:layout_marginBottom="10dp">
+                        <Button
+                            android:id="@+id/btn_rankbyfood"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:text="摄入"
+                            android:layout_marginEnd="20dp"
+                            android:textColor="@color/colorPrimary"
+                            android:background="@drawable/buybtn_selector" />
+                        <Button
+                            android:id="@+id/btn_rankbysport"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:text="消耗"
+                            android:textColor="@color/colorPrimary"
+                            android:background="@drawable/buybtn_selector" />
+                    </LinearLayout>
+                    <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/lv_rank"
                             android:layout_width="match_parent"
-                            android:layout_height="300dp"
-                            android:background="@drawable/runinmorning" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            xmlns:app="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/top_headimage"
-                            android:layout_width="96dp"
-                            android:layout_height="96dp"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="120dp"
-                            android:src="@drawable/dog"
-                            app:civ_border_color="@color/white"
-                            app:civ_border_width="2dp" />
-
-                    </FrameLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/lv_new"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </androidx.recyclerview.widget.RecyclerView>
-
+                            android:layout_height="wrap_content">
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </androidx.core.widget.NestedScrollView>
 
                 </LinearLayout>
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+                <LinearLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                        android:id="@+id/sw_refresh"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <androidx.core.widget.NestedScrollView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/lv_new"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
 
+                                </androidx.recyclerview.widget.RecyclerView>
+                            </LinearLayout>
+                        </androidx.core.widget.NestedScrollView>
+                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                </LinearLayout>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
 
 </LinearLayout>

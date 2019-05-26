@@ -6,7 +6,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import android.app.AlertDialog;
-import android.app.TimePickerDialog;
 
 import android.os.Bundle;
 import android.view.View;
@@ -71,7 +70,7 @@ public class AddSportActivity extends AppCompatActivity implements AdapterView.O
                 sportName = parent.getItemAtPosition(position).toString(); //获取点击内容
                 //showToast(parent.getItemAtPosition(position).toString());
                 final AlertDialog.Builder builder = new AlertDialog.Builder(AddSportActivity.this);
-                view = View.inflate(AddSportActivity.this, R.layout.timedurationchoosedialog, null);
+                view = View.inflate(AddSportActivity.this, R.layout.timedurationchoose_dialog, null);
 
 
 
@@ -100,11 +99,12 @@ public class AddSportActivity extends AppCompatActivity implements AdapterView.O
                 });
                 builder.setView(view);
                 builder.setCancelable(true);
-                TextView title= (TextView) view
-                        .findViewById(R.id.title);//设置标题
+                TextView title= (TextView) view.findViewById(R.id.title);//设置标题
                 //final EditText input_edt= (EditText) view.findViewById(R.id.dialog_edit);//输入内容
                 Button btn_cancel=view.findViewById(R.id.btn_cancel);//取消按钮
                 Button btn_comfirm=view.findViewById(R.id.btn_confirm);//确定按钮
+                TextView tv_sportname = view.findViewById(R.id.tv_sportname); //运动名称
+                tv_sportname.setText(sportName);
                 ImageView img_close = view.findViewById(R.id.img_close); //关闭对话框按钮
                 //取消或确定按钮监听事件处理
                 btn_comfirm.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +141,7 @@ public class AddSportActivity extends AppCompatActivity implements AdapterView.O
         sportName = tv_type.getText().toString();
         //sportName = parent.getItemAtPosition(position).toString(); //获取点击内容
         final AlertDialog.Builder builder = new AlertDialog.Builder(AddSportActivity.this);
-        view = View.inflate(AddSportActivity.this, R.layout.timedurationchoosedialog, null);
+        view = View.inflate(AddSportActivity.this, R.layout.timedurationchoose_dialog, null);
 
         WheelView wheel_hour = view.findViewById(R.id.wheel_hour);
         WheelView wheel_minute = view.findViewById(R.id.wheel_minute);
@@ -172,6 +172,8 @@ public class AddSportActivity extends AppCompatActivity implements AdapterView.O
         //final EditText input_edt= (EditText) view.findViewById(R.id.dialog_edit);//输入内容
         Button btn_cancel=(Button)view.findViewById(R.id.btn_cancel);//取消按钮
         Button btn_comfirm=(Button)view.findViewById(R.id.btn_confirm);//确定按钮
+        TextView tv_sportname = view.findViewById(R.id.tv_sportname); //运动名称
+        tv_sportname.setText(sportName);
         ImageView img_close = view.findViewById(R.id.img_close); //关闭对话框按钮
         //取消或确定按钮监听事件处理
         btn_comfirm.setOnClickListener(new View.OnClickListener() {

@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.cncoderx.wheelview.OnWheelChangedListener;
@@ -67,13 +66,15 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
                 foodName = parent.getItemAtPosition(position).toString(); //获取点击内容
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(AddFoodActivity.this);
-                view = View.inflate(AddFoodActivity.this, R.layout.intakechoosedialog, null);
+                view = View.inflate(AddFoodActivity.this, R.layout.intakechoose_dialog, null);
 
                 builder.setView(view);
                 builder.setCancelable(true);
 
                 Button btn_cancel=view.findViewById(R.id.btn_cancel); //取消按钮
                 Button btn_comfirm=view.findViewById(R.id.btn_confirm); //确定按钮
+                TextView tv_foodname = view.findViewById(R.id.tv_foodname); //食物名称
+                tv_foodname.setText(foodName);
                 ImageView img_close = view.findViewById(R.id.img_close);  //关闭对话框按钮
 
 
@@ -172,13 +173,15 @@ public class AddFoodActivity extends AppCompatActivity implements AdapterView.On
         foodName = tv_type.getText().toString();  //获取点击列表的数据
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(AddFoodActivity.this);
-        view = View.inflate(AddFoodActivity.this, R.layout.intakechoosedialog, null);
+        view = View.inflate(AddFoodActivity.this, R.layout.intakechoose_dialog, null);
         builder.setView(view);
         builder.setCancelable(true);
 
 
-        Button btn_cancel=view.findViewById(R.id.btn_cancel); //取消按钮
-        Button btn_comfirm=view.findViewById(R.id.btn_confirm); //确定按钮
+        Button btn_cancel = view.findViewById(R.id.btn_cancel); //取消按钮
+        Button btn_comfirm = view.findViewById(R.id.btn_confirm); //确定按钮
+        TextView tv_foodname = view.findViewById(R.id.tv_foodname); //食物名称
+        tv_foodname.setText(foodName);
         ImageView img_close = view.findViewById(R.id.img_close);  //关闭对话框按钮
 
 

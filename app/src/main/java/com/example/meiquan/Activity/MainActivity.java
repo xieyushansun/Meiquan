@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         GlobalData.phone = "18508333640";
         GlobalData.password = "3640";
         startActivity(new Intent(MainActivity.this, TabActivity.class));
+        finish();
         return;
         /*
         showToast("请输入用户名或密码！");
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         GlobalData.phone = ed_phone.getText().toString();
                         GlobalData.password = ed_password.getText().toString();
                         startActivity(new Intent(MainActivity.this, TabActivity.class));
+                        finish();
                     }
                     else if (response.body().compareTo("-1") == 0){
                         showToast("账号不存在，请先注册！");
@@ -64,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
             });
     }
     @OnClick(R.id.btn_regist) void regist(){
-
         startActivity(new Intent(MainActivity.this, registerActivity.class));
+        finish();
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

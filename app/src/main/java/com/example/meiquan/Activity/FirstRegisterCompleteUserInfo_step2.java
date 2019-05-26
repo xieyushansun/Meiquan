@@ -8,6 +8,7 @@ import butterknife.OnClick;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.meiquan.GlobalData;
@@ -20,6 +21,7 @@ public class FirstRegisterCompleteUserInfo_step2 extends AppCompatActivity {
     @BindView(R.id.ruler_picker_weight) RulerValuePicker ruler_picker_weight;
     @BindView(R.id.tv_showheight) TextView tv_showheight;
     @BindView(R.id.tv_showweight) TextView tv_showweight;
+    @BindView(R.id.ed_nickname) EditText ed_nickname;
     int height = 160;
     int weight = 50;
     @Override
@@ -73,6 +75,15 @@ public class FirstRegisterCompleteUserInfo_step2 extends AppCompatActivity {
     @OnClick(R.id.btn_nextstep) void nextstep(){
         GlobalData.weight = weight;
         GlobalData.height = height;
+        String nickname = ed_nickname.getText().toString();
+        if (nickname.isEmpty()){
+            GlobalData.nickname = "MeiQuan";
+        }else
+        {
+            GlobalData.nickname = nickname;
+        }
+
         startActivity(new Intent(FirstRegisterCompleteUserInfo_step2.this, FirstRegisterCompleteUserInfo_step3.class));
+        finish();
     }
 }

@@ -6,13 +6,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.meiquan.Activity.AddOrderActivity;
+import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
 import com.google.gson.JsonObject;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 
 public class tuijieCommodityAdapter extends BaseQuickAdapter<JsonObject, BaseViewHolder> {
     public tuijieCommodityAdapter(int layoutResId) {
@@ -47,7 +52,22 @@ public class tuijieCommodityAdapter extends BaseQuickAdapter<JsonObject, BaseVie
         img_addtoshoppingcar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                OkGo.<String>post(Urls.AddToShoppingCarServlet)
+                        .params("userphone", GlobalData.phone)
+                        .params("id_commodity", item.get("id_commodity").getAsString())
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onSuccess(Response<String> response) {
+                                if(response.body().compareTo("1") == 0){
+                                    ToastUtils.showShort("添加购物车成功");
+                                }else if (response.body().compareTo("-1") == 0){
+                                    ToastUtils.showShort("不可以重复添加噢");
+                                }else{
+                                    ToastUtils.showShort("添加购物车失败");
+                                }
 
+                            }
+                        });
             }
         });
 

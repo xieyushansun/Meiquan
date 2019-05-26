@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#4162CC74"
     android:orientation="vertical">
@@ -18,14 +19,22 @@
             android:background="@drawable/close_dialog"/>
     </FrameLayout>
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tv_sportname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0000ffff"
+        android:gravity="center"
+        android:textColor="#38ADFF"
+        android:text="游泳"
+        android:textSize="20sp"/>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0000ffff"
         android:gravity="center"
         android:layout_margin="20dp"
         android:textColor="#7D7D7D"
-        android:text="请选择饮食时间以及食用量"
+        android:text="请选择运动时间以及持续时长"
         android:textSize="16sp" />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -37,27 +46,24 @@
             android:layout_height="wrap_content"
             app:cyclic="true"
             app:entries="@array/choosewhen"
-            app:visibleItems="4"
+            app:visibleItems="9"
             app:toward="right"/>
-        <EditText
-            android:id="@+id/ed_intake"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:inputType="number"
-            android:padding="10dp"
-            android:textColor="@color/grey"
-            android:textCursorDrawable="@drawable/my_cursor"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/rounded_edittext_foodintake"
-            android:hint="请输入食用量/g"/>
-        <TextView
+        <com.cncoderx.wheelview.Wheel3DView
+            android:id="@+id/wheel_hour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="克"
-            android:layout_marginStart="10dp"
-            android:textSize="20sp"
-            android:layout_gravity="center"/>
+            app:cyclic="true"
+            app:entries="@array/choosehour"
+            app:visibleItems="9"
+            app:toward="right"/>
+        <com.cncoderx.wheelview.Wheel3DView
+            android:id="@+id/wheel_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cyclic="true"
+            app:entries="@array/chooseminute"
+            app:visibleItems="9"
+            app:toward="right"/>
     </LinearLayout>
 
     <View

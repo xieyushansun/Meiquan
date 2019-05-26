@@ -65,6 +65,7 @@ public class TabActivity extends AppCompatActivity {
                         //如果登录成功，就获取用户其它资料
                         Gson gson = new Gson();
                         JsonObject jsonObject = gson.fromJson(response.body(), JsonObject.class);
+                        GlobalData.sex = jsonObject.get("sex").getAsString();
                         GlobalData.nickname = jsonObject.get("nickname").getAsString();
                         GlobalData.height = jsonObject.get("height").getAsInt();
                         GlobalData.weight = jsonObject.get("weight").getAsInt();

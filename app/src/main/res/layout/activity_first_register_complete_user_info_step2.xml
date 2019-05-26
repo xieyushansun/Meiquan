@@ -27,6 +27,28 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="昵称"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/grey"
+            android:gravity="center"
+            android:textSize="16sp"/>
+        <EditText
+            android:id="@+id/ed_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:inputType="text"
+            android:textColor="@color/grey"
+            android:textCursorDrawable="@drawable/my_cursor"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edittext_round_blue" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="身高"
             android:layout_marginTop="20dp"
             android:textColor="@color/grey"

@@ -70,12 +70,21 @@ public class FirstRegisterCompleteUserInfo_step4 extends AppCompatActivity {
                 .params("height", GlobalData.height)
                 .params("weight", GlobalData.weight)
                 .params("sportintensity", GlobalData.sportintensity)
+                .params("nickname", GlobalData.nickname)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
                         if (response.body().compareTo("1") == 0){
                             ToastUtils.showShort("信息完善成功");
-                            startActivity(new Intent(FirstRegisterCompleteUserInfo_step4.this, TabActivity.class));
+                            if (GlobalData.flag_firstregisterOrresetInfo == 0){
+                                startActivity(new Intent(FirstRegisterCompleteUserInfo_step4.this, TabActivity.class));
+                                finish();
+                            }else
+                            {
+                                startActivity(new Intent(FirstRegisterCompleteUserInfo_step4.this, personnalSettingActivity.class));
+                                GlobalData.flag_firstregisterOrresetInfo = 0;
+                                finish();
+                            }
                             finish();
                         }else {
                             ToastUtils.showShort("信息完成失败");

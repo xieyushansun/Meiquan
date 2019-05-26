@@ -1,22 +1,30 @@
 package com.example.meiquan.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.KeyboardUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.Utils;
 import com.bumptech.glide.Glide;
 import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
 import com.example.meiquan.adapter.NewsAdapter;
+import com.example.meiquan.adapter.RankAdapter;
+import com.example.meiquan.entity.RankUser;
 import com.example.meiquan.util.GlideImageLoader;
 import com.google.gson.JsonObject;
 import com.lzy.imagepicker.ImagePicker;
@@ -30,6 +38,7 @@ import com.nanchen.compresshelper.CompressHelper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -49,12 +58,19 @@ import me.shaohui.bottomdialog.BottomDialog;
 public class NewsFragment extends Fragment {
     BottomDialog bottomDialog;
     @BindView(R.id.lv_new) RecyclerView lv_new;
-    @BindView(R.id.top_headimage) CircleImageView top_headimage;
     @BindView(R.id.sw_refresh) SwipeRefreshLayout sw_refresh;
+    @BindView(R.id.tabhost) TabHost tabhost;
+    @BindView(R.id.lv_rank) RecyclerView lv_rank;
+    @BindView(R.id.btn_rankbysport) Button btn_rankbysport;
+    @BindView(R.id.btn_rankbyfood) Button btn_rankbyfood;
     private final int IMAGE_PICKER = 100;
     List<JsonObject> newList;
+    List<RankUser> rankList;
     private File image = null;
     private ImageView m_img_showimage;
+
+    private RankAdapter rankAdapter;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //设置状态栏无色
@@ -65,7 +81,11 @@ public class NewsFragment extends Fragment {
         }*/
         View view = inflater.inflate(R.layout.fragment_new, null, false);
         ButterKnife.bind(this, view);
+
+        initTabhost();
+
         lv_new.setLayoutManager(new LinearLayoutManager(getContext()));
+        lv_rank.setLayoutManager(new LinearLayoutManager(getContext()));
         sw_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -74,14 +94,48 @@ public class NewsFragment extends Fragment {
         });
         sw_refresh.setRefreshing(true);
         loadnew();
-
+        getRank("sport");
         return view;
     }
+    void getRank(String rankway){
+        OkGo.<String>post(Urls.GetRankServlet)
+                .params("phone", GlobalData.phone)
+                .params("rankway", rankway)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(Response<String> response) {
+                        rankList = GsonUtils.fromJson(response.body(), GsonUtils.getListType(RankUser.class));
 
+                        //RankAdapter rankAdapter = new RankAdapter(R.layout.listitem_rank);
+                        rankAdapter = new RankAdapter(R.layout.listitem_rank);
+                        rankAdapter.bindToRecyclerView(lv_rank);
+
+                        rankAdapter.setNewData(rankList);
+                        rankAdapter.sortByFood();
+                        btn_rankbysport.setTextColor(getResources().getColor(R.color.grey,null));
+
+                    }
+                });
+    }
+    void initTabhost(){
+        tabhost.setup();
+
+        tabhost.addTab(tabhost.newTabSpec("one").setIndicator("好友动态").setContent(R.id.tab1));
+        tabhost.addTab(tabhost.newTabSpec("two").setIndicator("今日排行").setContent(R.id.tab2));
+        TextView tv1 = tabhost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
+        tv1.setTextColor(getResources().getColor(R.color.colorPrimary,null ));
+        tabhost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                TextView tv1 = tabhost.getTabWidget().getChildAt(tabhost.getCurrentTab()).findViewById(android.R.id.title);
+                tv1.setTextColor(getResources().getColor(R.color.colorPrimary,null ));
+                TextView tv2 = tabhost.getTabWidget().getChildAt(1-tabhost.getCurrentTab()).findViewById(android.R.id.title);
+                tv2.setTextColor(getResources().getColor(R.color.grey,null ));
+
+            }
+        });
+    }
     void loadnew(){
-        if (!GlobalData.headimage_url.isEmpty()){
-            Glide.with(this).load(Urls.HOST + GlobalData.headimage_url).into(top_headimage);
-        }
         OkGo.<String>post(Urls.GetNewsServlet)
                 .params("phone", GlobalData.phone)
                 .execute(new StringCallback() {
@@ -115,7 +169,7 @@ public class NewsFragment extends Fragment {
                                 String content = ed_message.getText().toString();
                                 //bottomDialog.dismiss();
                                 if (content.isEmpty()){
-                                    showToast("请输入内容");
+                                    ToastUtils.showShort("请输入内容");
                                     return;
                                 }
                                 if (image != null){
@@ -131,7 +185,7 @@ public class NewsFragment extends Fragment {
                                                         if (!(image.getPath()).isEmpty()){
                                                             image = null;
                                                         }
-                                                        showToast("发送成功");
+                                                        ToastUtils.showShort("发送成功");
                                                     }
                                                     else{
                                                         Toasty.info(getContext(), "发送失败", Toast.LENGTH_SHORT, true).show();
@@ -148,7 +202,7 @@ public class NewsFragment extends Fragment {
                                                 public void onSuccess(Response<String> response) {
                                                     if (response.body().compareTo("1") == 0){
 
-                                                        showToast("发送成功");
+                                                        ToastUtils.showShort("发送成功");
                                                     }
                                                     else{
                                                         Toasty.info(getContext(), "发送失败", Toast.LENGTH_SHORT, true).show();
@@ -185,9 +239,16 @@ public class NewsFragment extends Fragment {
                 bottomDialog.setDimAmount(0.1f);
                 bottomDialog.show();
     }
+    @OnClick(R.id.btn_rankbyfood) void rankByFood(){
+        rankAdapter.sortByFood();
+        btn_rankbyfood.setTextColor(getResources().getColor(R.color.colorPrimary, null));
+        btn_rankbysport.setTextColor(getResources().getColor(R.color.grey,null));
 
-    void showToast(String msg) {
-        Toasty.success(getContext(), msg, Toast.LENGTH_SHORT).show();
+    }
+    @OnClick(R.id.btn_rankbysport) void rankBySport(){
+        rankAdapter.sortBySport();
+        btn_rankbysport.setTextColor(getResources().getColor(R.color.colorPrimary, null));
+        btn_rankbyfood.setTextColor(getResources().getColor(R.color.grey,null));
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -203,7 +264,7 @@ public class NewsFragment extends Fragment {
                 Glide.with(this).load(images.get(0).path).into(m_img_showimage);
 
             } else {
-                showToast("没有数据");
+                ToastUtils.showShort("没有数据");
             }
         }
     }

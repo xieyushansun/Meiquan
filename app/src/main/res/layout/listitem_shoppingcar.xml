@@ -29,15 +29,27 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tv_commodityname"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="巧克力夹心蛋奶"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="#0F0F0F"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_commodityname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="巧克力夹心蛋奶"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#0F0F0F"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/tv_id_commodity"
+                        android:visibility="invisible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
                 <TextView
                     android:id="@+id/tv_commodityprice"
                     android:layout_width="wrap_content"

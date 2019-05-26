@@ -30,5 +30,9 @@ public class Urls {
     public static String ConfirmAcceptServlet = HOSTWEB + "/ConfirmAcceptServlet";
     public static String AddToShoppingCarServlet = HOSTWEB + "/AddToShoppingCarServlet";
     public static String GetShoppingCarServlet = HOSTWEB + "/GetShoppingCarServlet";
+    public static String ChangePasswordServlet = HOSTWEB + "/ChangePasswordServlet";
+    public static String GetRankServlet = HOSTWEB + "/GetRankServlet";
+    public static String DeleteShoppingCarServlet = HOSTWEB + "/DeleteShoppingCarServlet";
+    public static String GetTodayCaloryDetailServlet = HOSTWEB + "/GetTodayCaloryDetailServlet";
     // http://localhost:8080/meiquanWebApp/LoginServlet
 }

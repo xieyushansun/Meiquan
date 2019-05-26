@@ -1,6 +1,8 @@
 package com.example.meiquan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -8,37 +10,26 @@ import butterknife.OnClick;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
-import com.google.gson.Gson;
+import com.example.meiquan.adapter.MyFollowAdapter;
 import com.google.gson.JsonObject;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class AllMyFollows extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
-    @BindView(R.id.lv_allmyfollows) ListView lv_allmyfollows;
+public class AllMyFollowsActivity extends AppCompatActivity implements View.OnClickListener {
+    @BindView(R.id.lv_allmyfollows) RecyclerView lv_allmyfollows;
     ImageView img_addnewfriend;
-    List<JsonObject> AllMyFollowList;
-
-    SimpleAdapter sim_adapter;
-    List<Map<String, Object>> datalist = new ArrayList<Map<String, Object>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +39,7 @@ public class AllMyFollows extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
         img_addnewfriend = findViewById(R.id.img_addnewfriend);
         img_addnewfriend.setOnClickListener(this);
+        lv_allmyfollows.setLayoutManager(new LinearLayoutManager(this));
         loadallmyfollow();
     }
 
@@ -57,13 +49,10 @@ public class AllMyFollows extends AppCompatActivity implements View.OnClickListe
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        AllMyFollowList = GsonUtils.fromJson(response.body(), GsonUtils.getListType(JsonObject.class));
-                    }
-
-                    @Override
-                    public void onFinish() {
-                        super.onFinish();
-                        initList();
+                        List<JsonObject> AllMyFollowList = GsonUtils.fromJson(response.body(), GsonUtils.getListType(JsonObject.class));
+                        MyFollowAdapter myFollowAdapter = new MyFollowAdapter(R.layout.listitem_allmyfollows);
+                        myFollowAdapter.bindToRecyclerView(lv_allmyfollows);
+                        myFollowAdapter.setNewData(AllMyFollowList);
                     }
                 });
     }
@@ -72,28 +61,10 @@ public class AllMyFollows extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    void initList(){
-        int[]item_id = {R.id.tv_nickname, R.id.tv_phone};
-        String[]item_name={"nickname", "phone"};
-        sim_adapter = new SimpleAdapter(AllMyFollows.this, getData(), R.layout.listitem_allmyfollows, item_name, item_id);
-        lv_allmyfollows.setAdapter(sim_adapter);
-        lv_allmyfollows.setOnItemClickListener(this);
-    }
-    private List<Map<String, Object>> getData() {
-        datalist.clear();
-        for (int i = 0; i < AllMyFollowList.size(); i++){
-            Map<String, Object>map = new HashMap<String, Object>();
-            map.put("nickname", AllMyFollowList.get(i).get("nickname").getAsString());
-            map.put("phone", AllMyFollowList.get(i).get("followphone").getAsString());
-            datalist.add(map);
-        }
-        return datalist;
-    }
-
     @Override
     public void onClick(View view) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(AllMyFollows.this);
-        view = View.inflate(AllMyFollows.this, R.layout.addnewfriend_dialog, null);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(AllMyFollowsActivity.this);
+        view = View.inflate(AllMyFollowsActivity.this, R.layout.addnewfriend_dialog, null);
 
         builder.setView(view);
         builder.setCancelable(true);
@@ -109,7 +80,7 @@ public class AllMyFollows extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 if (ed_followphone.getText().toString().isEmpty()){
-                    showToast("请输入手机号");
+                    ToastUtils.showShort("请输入手机号");
                     return;
                 }
                 OkGo.<String>post(Urls.AddFriendServlet)
@@ -118,13 +89,16 @@ public class AllMyFollows extends AppCompatActivity implements View.OnClickListe
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(Response<String> response) {
-                                if (response.body().compareTo("-1") == 0){
-                                    showToast("该用户不存在");
-                                }else if (response.body().compareTo("1") == 0)
-                                {
-                                    showToast("关注成功");
-                                }else {
-                                    showToast("关注失败");
+                                if (response.body().compareTo("1") == 0){
+                                    ToastUtils.showShort("关注成功");
+                                }else if (response.body().compareTo("-1") == 0) {
+                                    ToastUtils.showShort("不能关注自己噢");
+                                }else if(response.body().compareTo("-2") == 0){
+                                    ToastUtils.showShort("不能重复关注该用户噢");
+                                }else if (response.body().compareTo("-3") == 0){
+                                    ToastUtils.showShort("没有该用户");
+                                }else{
+                                    ToastUtils.showShort("关注失败");
                                 }
                             }
 
@@ -149,13 +123,5 @@ public class AllMyFollows extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-    }
-    void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //关注者列表被点击事件
     }
 }

@@ -34,8 +34,6 @@
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
     <EditText
         android:id="@+id/ed_password"
         android:layout_width="match_parent"

@@ -11,12 +11,16 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.meiquan.Activity.AddFoodActivity;
 import com.example.meiquan.Activity.AddSportActivity;
 import com.example.meiquan.Activity.FoodDetailActivity;
+import com.example.meiquan.Activity.TodayCaloryDetailActivity;
 import com.example.meiquan.GlobalData;
 import com.example.meiquan.R;
 import com.example.meiquan.Urls;
+import com.example.meiquan.adapter.TodayCaloryDetailAdapter;
 import com.example.meiquan.entity.FoodCalory;
 import com.example.meiquan.util.CalculateCaloryForOneDay;
 import com.github.mikephil.charting.charts.BarChart;
@@ -36,6 +40,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -47,6 +53,7 @@ public class TodayFragment extends Fragment {
     @BindView(R.id.tv_todaycalory) TextView tv_todaycalory;
     @BindView(R.id.tv_total_food) TextView tv_total_food;
     @BindView(R.id.tv_total_sport) TextView tv_total_sport;
+
     List<String> data =new ArrayList<String>();
     @BindView(R.id.act_searchfooddetail) AutoCompleteTextView act_searchfooddetail;
     @OnClick(R.id.btn_addsport) void addsport(){
@@ -70,6 +77,19 @@ public class TodayFragment extends Fragment {
     @OnClick(R.id.img_sport_refresh) void sport_refresh(){
         initTodaySportDataFromSever();
     }
+    @OnClick(R.id.img_clear) void clear(){
+        act_searchfooddetail.setText("");
+    }
+    @OnClick(R.id.img_search) void search(){
+        String foodName = act_searchfooddetail.getText().toString();
+        if (foodName.isEmpty()){
+            ToastUtils.showShort("请输入搜索食物名称");
+            return;
+        }
+        Intent intent = new Intent(getContext(), FoodDetailActivity.class);
+        intent.putExtra("foodName", foodName );
+        startActivity(intent);
+    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, null, false);
@@ -77,6 +97,7 @@ public class TodayFragment extends Fragment {
         initTodayFoodDataFromSever();
         initTodaySportDataFromSever();
         initActInput();
+
         act_searchfooddetail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -207,7 +228,6 @@ public class TodayFragment extends Fragment {
         barData.setValueTextSize(15);
         return barData;
     }
-
     //运动图表
     void initTodaySportDataFromSever(){
         OkGo.<String>post(Urls.TodaySportServlet)
@@ -312,7 +332,6 @@ public class TodayFragment extends Fragment {
         barData.setValueTextSize(15);
         return barData;
     }
-
     //初始化搜索框
     void initActInput(){
         act_searchfooddetail.setThreshold(0); //设置输入一个字符就开始提示
@@ -333,6 +352,16 @@ public class TodayFragment extends Fragment {
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, data);
         act_searchfooddetail.setAdapter(adapter);
+    }
+    @OnClick(R.id.img_fooddetail) void getFoodDetail(){
+        Intent intent = new Intent(getActivity(), TodayCaloryDetailActivity.class);
+        intent.putExtra("foodOrsport", "food");
+        startActivity(intent);
+    }
+    @OnClick(R.id.img_sportdetail) void getSportDetail(){
+        Intent intent = new Intent(getActivity(), TodayCaloryDetailActivity.class);
+        intent.putExtra("foodOrsport", "sport");
+        startActivity(intent);
     }
 
 }

@@ -55,6 +55,7 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/close"/>
     </FrameLayout>
+
     <ListView
         android:id="@+id/lv_foodlist"
         android:layout_width="match_parent"

@@ -137,6 +137,7 @@ public class FirstRegisterCompleteUserInfo_step3 extends AppCompatActivity {
         GlobalData.province = provinceName;
         GlobalData.city = cityName;
         startActivity(new Intent(FirstRegisterCompleteUserInfo_step3.this, FirstRegisterCompleteUserInfo_step4.class));
+        finish();
     }
     void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();

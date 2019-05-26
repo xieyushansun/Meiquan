@@ -7,16 +7,15 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:orientation="horizontal"
         android:background="@color/colorPrimary">
         <AutoCompleteTextView
             android:id="@+id/act_searchfooddetail"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:paddingStart="10dp"
+            android:paddingStart="40dp"
             android:paddingEnd="10dp"
-            android:drawableEnd="@drawable/close"
-            android:drawableStart="@drawable/enlargeglass"
             android:drawablePadding="10dp"
             android:inputType="text"
             android:hint="搜索食物热量和营养"
@@ -26,6 +25,20 @@
             android:layout_margin="@dimen/margin"
             android:background="@drawable/rounded_edittext"
             />
+        <ImageView
+            android:id="@+id/img_search"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/enlargeglass"/>
+        <ImageView
+            android:id="@+id/img_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/close"/>
     </FrameLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -86,7 +99,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         fab:fab_icon="@drawable/sport"
-                        fab:fab_colorNormal="@color/pink"
+                        fab:fab_colorNormal="#FDA627"
                         fab:fab_colorPressed="@color/white_pressed"/>
 
                 </com.getbase.floatingactionbutton.FloatingActionsMenu>
@@ -152,6 +165,7 @@
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/refresh"/>
                         <ImageView
+                            android:id="@+id/img_fooddetail"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center_vertical"
@@ -165,8 +179,7 @@
                     android:id="@+id/chart_food"
                     android:layout_width="match_parent"
                     android:layout_margin="10dp"
-                    android:layout_height="200dp"
-                    >
+                    android:layout_height="200dp">
                 </com.github.mikephil.charting.charts.BarChart>
             </LinearLayout>
             <LinearLayout
@@ -202,6 +215,7 @@
                             android:layout_gravity="center_vertical"
                             android:background="@drawable/refresh"/>
                         <ImageView
+                            android:id="@+id/img_sportdetail"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center_vertical"

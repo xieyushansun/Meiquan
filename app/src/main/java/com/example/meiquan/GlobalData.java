@@ -49,6 +49,9 @@ public class GlobalData{
     public static int total_sport = 0;
 
     public static String headimage_url = "";
+
+    public static int flag_firstregisterOrresetInfo = 0;
+
     public static int getAge(){
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);

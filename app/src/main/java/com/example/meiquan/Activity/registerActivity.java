@@ -60,6 +60,7 @@ public class registerActivity extends AppCompatActivity {
                             GlobalData.phone = ed_phone.getText().toString();
                             GlobalData.password = ed_password.getText().toString();
                             startActivity(new Intent(registerActivity.this, FirstRegisterCompleteUserInfo_step1.class));
+                            finish();
                         }
                     }
                 });

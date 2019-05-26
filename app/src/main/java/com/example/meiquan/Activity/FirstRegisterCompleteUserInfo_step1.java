@@ -119,6 +119,7 @@ public class FirstRegisterCompleteUserInfo_step1 extends AppCompatActivity {
         GlobalData.birthmonth = birthmonth;
         GlobalData.birthday = birthday;
         startActivity(new Intent(FirstRegisterCompleteUserInfo_step1.this, FirstRegisterCompleteUserInfo_step2.class));
+        finish();
     }
     void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
